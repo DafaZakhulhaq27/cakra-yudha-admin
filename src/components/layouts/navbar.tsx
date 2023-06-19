@@ -1,5 +1,6 @@
 import { Avatar, Dropdown } from 'flowbite-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { HiMenuAlt2 } from 'react-icons/hi'
 
 type Props = {
@@ -23,18 +24,18 @@ const MainNavbar = ({ handleSidebar }: Props) => {
               <span className="sr-only">Open sidebar</span>
               <HiMenuAlt2 size={24} />
             </button>
-            <a href="https://flowbite.com" className="flex ml-2 md:mr-24">
+            <Link href="/" className="flex ml-2 md:mr-24">
               <Image
                 width={40}
                 height={40}
-                src="https://flowbite.com/docs/images/logo.svg"
+                src="/vercel.svg"
                 className="h-8 mr-3"
                 alt="FlowBite Logo"
               />
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                 Company Name
               </span>
-            </a>
+            </Link>
           </div>
           <div className="flex items-center">
             <div className="flex items-center ml-3">
