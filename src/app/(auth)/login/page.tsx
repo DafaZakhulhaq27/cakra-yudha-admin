@@ -7,12 +7,12 @@ import Image from 'next/image'
 import { FormProvider, useForm } from 'react-hook-form'
 import { object, string, z } from 'zod'
 
-export const loginModel = object({
+const loginModel = object({
   email: string().email().nonempty(),
   password: string().nonempty(),
 })
 
-export type LoginModel = z.infer<typeof loginModel>
+type LoginModel = z.infer<typeof loginModel>
 
 const Login = () => {
   const methods = useForm<LoginModel>({
