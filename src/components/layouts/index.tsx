@@ -1,3 +1,5 @@
+'use client'
+
 import { ReactNode } from 'react'
 import MainNavbar from './navbar'
 import MainSidebar from './sidebar'
