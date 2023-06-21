@@ -1,7 +1,6 @@
 import RootProviders from '@/components/RootProviders'
 import { getSession } from 'next-auth/react'
 import { Inter } from 'next/font/google'
-import Script from 'next/script'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -17,12 +16,14 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const session = await getSession()
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <RootProviders session={session}>{children}</RootProviders>
       </body>
-      <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js" />
+      {/* Still bug when running router.refresh() */}
+      {/* <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js" /> */}
     </html>
   )
 }
