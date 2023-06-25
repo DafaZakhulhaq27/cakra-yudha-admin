@@ -56,7 +56,9 @@ const LoginForm = () => {
               name="password"
               placeholder="password"
             />
-            <Button text="Sign In" type="submit" className="mt-8" />
+            <Button type="submit" className="mt-8">
+              Sign In
+            </Button>
           </form>
         </FormProvider>
       </div>

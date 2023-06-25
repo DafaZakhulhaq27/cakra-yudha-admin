@@ -6,6 +6,11 @@ const menu:SidebarItemProps[] = [
         icon :  HiOutlineHome,
         title : 'Home',
         link : '/home',
+    },    
+    {
+        icon :  HiOutlineHome,
+        title : 'CRUD',
+        link : '/crud',
     },
     {
         icon :  HiOutlineHome,
