@@ -17,18 +17,23 @@ const LoginForm = () => {
     defaultValues: initLoginForm,
   })
 
-  const { handleSubmit } = methods
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = methods
 
-  const onSubmit = (data: LoginModel, e: any) => {
-    signIn('credentials', { redirect: false, ...data }).then(
-      ({ error }: any) => {
-        if (error) {
-          alert('gagal')
-        } else {
-          router.refresh()
-        }
-      },
-    )
+  const onSubmit = async (data: LoginModel, e: any) => {
+    try {
+      const res = await signIn('credentials', { redirect: false, ...data })
+      if (res?.error) {
+        alert('Gagal')
+        return
+      }
+
+      router.refresh()
+    } catch (_) {
+      alert('error')
+    }
   }
 
   return (
@@ -49,7 +54,7 @@ const LoginForm = () => {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-            <Input label="Email" name="email" placeholder="email" />
+            <Input label="Username" name="username" placeholder="username" />
             <Input
               label="Password"
               type="password"
@@ -57,7 +62,7 @@ const LoginForm = () => {
               placeholder="password"
             />
             <Button type="submit" className="mt-8">
-              Sign In
+              {isSubmitting ? 'loading' : 'Sign In'}
             </Button>
           </form>
         </FormProvider>

@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface ErrorJson {
   // error: string === error.message
   // statusCode: number === error.code

@@ -1,3 +1,4 @@
+import { login } from '@/api/inbound/auth'
 import { LoginModel } from '@/models/auth'
 import { Provider } from 'next-auth/providers'
 import CredentialProvider from 'next-auth/providers/credentials'
@@ -8,14 +9,15 @@ export const providers: Provider[] = [
     name : 'credential',
     credentials: {},
     async authorize(credentials) {
-      const { email, password } = credentials as LoginModel
+      const { username, password } = credentials as LoginModel
 
-      if(email === 'dafa@gmail.com' && password === '12345678'){
+      const res = await login({ username, password })
+      if(res.token){
         return {
           id: 'nextToken',
-          email,
+          username,
           password,
-          bearerToken : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkpvaG4gRG9lIiwibmFtZSI6MTUxNjIzOTAyMn0.4mVg9GSDxsPktDs2Lro8rpX7clBAlgY907bqJ65BYKk'
+          bearerToken : res.token
         }
       }
 

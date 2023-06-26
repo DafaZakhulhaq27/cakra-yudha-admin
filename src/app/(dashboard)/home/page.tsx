@@ -1,7 +1,8 @@
-type Props = {}
+import { getTest } from '@/api/outbound/test'
 
-const Home = (props: Props) => {
+export default async function Home() {
+  const res = await getTest()
+  console.log(res, 'res')
+
   return <div>Home</div>
 }
-
-export default Home

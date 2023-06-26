@@ -9,17 +9,17 @@ export async function fetcher<T>(
   path: string | { fullUrl: string },
   options: {
     method: MethodType
-    body?: BodyInit | null
+    body?: object | null
   } = {
     method: 'GET',
     body: null,
   },
+  type: 'in' | 'out' = 'out',
 ) {
   const session = await getServerSession(authOptions)
   const token = `Bearer ${session?.user.bearerToken ?? ''}`
 
-  const baseURL = process.env.API_URL
-
+  const baseURL = type === 'out' ?  process.env.API_URL : process.env.NEXTAUTH_URL + '/api'
   if (!baseURL) {
     throw new Error('Base URL not found')
   }
@@ -37,8 +37,14 @@ export async function fetcher<T>(
     // console.log('=== TOKEN:', token)
   }
 
+
+
   const isGetMethod = options.method === 'GET'
   const body = JSON.stringify(options.body) ?? null
+
+  console.log(token,headers,body,'headers' )
+
+
   const init: RequestInit = {
     method: options.method,
     headers,
