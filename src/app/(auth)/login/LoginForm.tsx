@@ -61,7 +61,15 @@ const LoginForm = () => {
               name="password"
               placeholder="password"
             />
-            <Button type="submit" className="mt-8">
+            {/* <Button color="warning" disabled isProcessing>
+              Warning
+            </Button>{' '} */}
+            <Button
+              type="submit"
+              className="mt-8"
+              isProcessing={isSubmitting}
+              disabled={isSubmitting}
+            >
               {isSubmitting ? 'loading' : 'Sign In'}
             </Button>
           </form>
