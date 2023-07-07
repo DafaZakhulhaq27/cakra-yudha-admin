@@ -4,13 +4,17 @@ import Button from '@/components/forms/button'
 import Input from '@/components/forms/input'
 import { LoginModel, initLoginForm, loginModel } from '@/models/auth'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Alert } from 'flowbite-react'
 import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { HiInformationCircle } from 'react-icons/hi'
 
 const LoginForm = () => {
   const router = useRouter()
+  const [error, setError] = useState('')
   const methods = useForm<LoginModel>({
     mode: 'onTouched',
     resolver: zodResolver(loginModel),
@@ -26,7 +30,7 @@ const LoginForm = () => {
     try {
       const res = await signIn('credentials', { redirect: false, ...data })
       if (res?.error) {
-        alert('Gagal')
+        setError(res?.error)
         return
       }
 
@@ -46,12 +50,19 @@ const LoginForm = () => {
           src="./vercel.svg"
           alt="Your Company"
         />
+
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Sign in to your account
         </h2>
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        {error && (
+          <Alert className="mb-4" color="failure" icon={HiInformationCircle}>
+            {error}
+          </Alert>
+        )}
+
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <Input label="Username" name="username" placeholder="username" />
@@ -61,16 +72,13 @@ const LoginForm = () => {
               name="password"
               placeholder="password"
             />
-            {/* <Button color="warning" disabled isProcessing>
-              Warning
-            </Button>{' '} */}
             <Button
               type="submit"
               className="mt-8"
               isProcessing={isSubmitting}
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'loading' : 'Sign In'}
+              Sign In
             </Button>
           </form>
         </FormProvider>

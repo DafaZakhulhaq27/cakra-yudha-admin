@@ -1,4 +1,4 @@
-import { getTest } from '@/api/test'
+import { getTest } from '@/api/outbound/test'
 import List from '../_components/List'
 
 export default async function CRUDPage() {

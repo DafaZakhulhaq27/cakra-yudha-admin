@@ -23,7 +23,7 @@ export async function catchBackendError<T>(res: Response) {
       message = json.message
     }
 
-    console.log(`=> ${res.url} code`, res.status)
+    console.log(`=> ${res.url} code`, message,res.status)
     const error = new BackendError(message, res.status)
     return Promise.reject(error)
   }
