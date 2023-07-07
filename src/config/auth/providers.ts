@@ -1,4 +1,4 @@
-import { login } from '@/api/inbound/auth'
+import { login } from '@/api/auth'
 import { LoginModel } from '@/models/auth'
 import { Provider } from 'next-auth/providers'
 import CredentialProvider from 'next-auth/providers/credentials'

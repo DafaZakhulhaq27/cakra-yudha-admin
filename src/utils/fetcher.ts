@@ -42,8 +42,6 @@ export async function fetcher<T>(
   const isGetMethod = options.method === 'GET'
   const body = JSON.stringify(options.body) ?? null
 
-  console.log(token,headers,body,'headers' )
-
 
   const init: RequestInit = {
     method: options.method,

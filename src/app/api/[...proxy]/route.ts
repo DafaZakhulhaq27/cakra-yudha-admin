@@ -51,7 +51,6 @@ export async function DELETE(req: NextRequest) {
 
 
 export async function POST(req: NextRequest) {
-  console.log(req,'re')
   const path = getPath(req.url)
 
   const type = req.headers.get('content-type') ?? ''

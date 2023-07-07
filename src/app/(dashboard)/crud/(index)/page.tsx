@@ -1,5 +1,9 @@
-import List from '../List'
+import { getTest } from '@/api/test'
+import List from '../_components/List'
 
-export default function CRUDPage() {
+export default async function CRUDPage() {
+  const res = await getTest()
+  console.log(res, 'res')
+
   return <List />
 }
