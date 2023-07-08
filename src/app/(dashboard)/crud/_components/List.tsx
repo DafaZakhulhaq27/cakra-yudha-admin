@@ -1,5 +1,6 @@
 'use client'
 
+import { GetAllProduct } from '@/api/product/model'
 import Button from '@/components/forms/button'
 import MainPagination from '@/components/list/pagination'
 import Search from '@/components/list/search'
@@ -7,26 +8,13 @@ import SelectFilter from '@/components/list/selectFilter'
 import Table from '@/components/list/table'
 import { HiPlus } from 'react-icons/hi'
 
-type User = {
-  name: string
-  email: string
-  phone: string
+type Props = {
+  res: GetAllProduct
 }
 
-const data: User[] = [
-  {
-    name: 'Dafa',
-    email: 'dafa@gmail.com',
-    phone: '081123456789',
-  },
-  {
-    name: 'Dafa',
-    email: 'dafa@gmail.com',
-    phone: '081123456789',
-  },
-]
+export default function List({ res }: Props) {
+  const { products, limit, skip, total } = res
 
-export default function List() {
   return (
     <section className=" p-3 sm:p-5">
       <div className="mx-auto w-full">
@@ -58,14 +46,37 @@ export default function List() {
           </div>
           <div className="overflow-x-auto">
             <Table
-              columns={['Name', 'Email', 'Phone']}
-              data={data}
+              columns={[
+                {
+                  column: 'Nama',
+                  name: 'nama',
+                },
+                {
+                  column: 'Email',
+                  name: 'email',
+                  render: v => <p className="text-pink-500">{v}</p>,
+                },
+              ]}
+              data={[
+                {
+                  nama: 'Dafa',
+                  email: 'dafa@gmail.com',
+                },
+                {
+                  nama: 'John',
+                  email: 'john@example.com',
+                },
+              ]}
               onDelete={() => alert('hapus')}
               onEdit={() => {}}
               onView={() => {}}
             />
           </div>
-          <MainPagination totalPage={2} totalData={20} currentData={10} />
+          <MainPagination
+            totalPage={total / limit}
+            totalData={total}
+            currentData={limit}
+          />
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { LoginData } from "@/types/response/user"
+import { LoginData } from "@/api/auth/model"
 import { fetcher } from "@/utils/fetcher"
 
 type Login = {

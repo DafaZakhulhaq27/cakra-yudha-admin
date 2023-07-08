@@ -19,12 +19,12 @@ export default function MainPagination({
 
   const handlePageClick = (selectedItem: { selected: number }) => {
     appendQuery({
-      page: (selectedItem.selected + 1).toString(),
+      skip: (selectedItem.selected * currentData).toString(),
     })
   }
 
-  const initialPage = currentParams.get('page')
-    ? parseInt(currentParams.get('page')!) - 1
+  const initialPage = currentParams.get('skip')
+    ? parseInt(currentParams.get('skip')!) / currentData
     : 0
 
   return (
