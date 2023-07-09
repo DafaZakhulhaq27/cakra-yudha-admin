@@ -7,16 +7,18 @@ type Column = {
   render?: (value: string | number) => React.ReactNode
 }
 
-type Data = {
-  [key: string]: string
-}
+type Data =
+  | {
+      [key: string]: string
+    }
+  | any
 
 type TableProps = {
   columns: Column[]
   data: Data[]
-  onDelete?: () => void
-  onEdit?: () => void
-  onView?: () => void
+  onDelete?: (() => void) | null
+  onEdit?: (() => void) | null
+  onView?: (() => void) | null
 }
 
 export default function Table({
@@ -55,37 +57,39 @@ export default function Table({
               </td>
             ))}
             {hasAction && (
-              <td className="px-4 py-3 flex items-center justify-end gap-3">
-                {!!onView && (
-                  <Tooltip content="View">
-                    <HiEye
-                      color="green"
-                      cursor="pointer"
-                      onClick={onDelete}
-                      size={20}
-                    />
-                  </Tooltip>
-                )}
-                {!!onEdit && (
-                  <Tooltip content="Edit">
-                    <HiPencil
-                      color="blue"
-                      cursor="pointer"
-                      onClick={onDelete}
-                      size={20}
-                    />
-                  </Tooltip>
-                )}
-                {!!onDelete && (
-                  <Tooltip content="Delete">
-                    <HiTrash
-                      color="red"
-                      cursor="pointer"
-                      onClick={onDelete}
-                      size={20}
-                    />
-                  </Tooltip>
-                )}
+              <td className="px-4 py-3">
+                <div className="flex items-center justify-end gap-3 h-full">
+                  {!!onView && (
+                    <Tooltip content="View">
+                      <HiEye
+                        color="green"
+                        cursor="pointer"
+                        onClick={onView!}
+                        size={20}
+                      />
+                    </Tooltip>
+                  )}
+                  {!!onEdit && (
+                    <Tooltip content="Edit">
+                      <HiPencil
+                        color="blue"
+                        cursor="pointer"
+                        onClick={onEdit!}
+                        size={20}
+                      />
+                    </Tooltip>
+                  )}
+                  {!!onDelete && (
+                    <Tooltip content="Delete">
+                      <HiTrash
+                        color="red"
+                        cursor="pointer"
+                        onClick={onDelete}
+                        size={20}
+                      />
+                    </Tooltip>
+                  )}
+                </div>
               </td>
             )}
           </tr>

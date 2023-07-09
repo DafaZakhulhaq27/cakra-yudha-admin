@@ -5,7 +5,7 @@ export type Product = {
   title: string
   description: string
   price: number
-  discount: number
+  discountPercentage: number
   stock: number
   brand: string
   category: string

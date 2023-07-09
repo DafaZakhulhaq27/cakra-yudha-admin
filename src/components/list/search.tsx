@@ -16,7 +16,7 @@ export default function Search() {
     },
   })
 
-  const onSubmit = ({ search }: FormProps) => appendQuery({ search })
+  const onSubmit = ({ search }: FormProps) => appendQuery({ search, page: '1' })
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex items-center">

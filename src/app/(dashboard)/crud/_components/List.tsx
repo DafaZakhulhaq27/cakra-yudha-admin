@@ -14,6 +14,7 @@ type Props = {
 
 export default function List({ res }: Props) {
   const { products, limit, skip, total } = res
+  console.log(products, 'p')
 
   return (
     <section className=" p-3 sm:p-5">
@@ -48,25 +49,24 @@ export default function List({ res }: Props) {
             <Table
               columns={[
                 {
-                  column: 'Nama',
-                  name: 'nama',
+                  column: 'Title',
+                  name: 'title',
                 },
                 {
-                  column: 'Email',
-                  name: 'email',
-                  render: v => <p className="text-pink-500">{v}</p>,
+                  column: 'Desc',
+                  name: 'description',
+                },
+                {
+                  column: 'Price',
+                  name: 'price',
+                },
+                {
+                  column: 'Discount',
+                  name: 'discountPercentage',
+                  render: v => <p>{v} %</p>,
                 },
               ]}
-              data={[
-                {
-                  nama: 'Dafa',
-                  email: 'dafa@gmail.com',
-                },
-                {
-                  nama: 'John',
-                  email: 'john@example.com',
-                },
-              ]}
+              data={products}
               onDelete={() => alert('hapus')}
               onEdit={() => {}}
               onView={() => {}}
