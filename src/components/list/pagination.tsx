@@ -19,14 +19,13 @@ export default function MainPagination({
 
   const handlePageClick = (selectedItem: { selected: number }) => {
     appendQuery({
-      skip: (selectedItem.selected * currentData).toString(),
+      page: (selectedItem.selected + 1).toString(),
     })
   }
 
-  const initialPage = currentParams.get('skip')
-    ? parseInt(currentParams.get('skip')!) / currentData
+  const initialPage = currentParams.get('page')
+    ? parseInt(currentParams.get('page')!) - 1
     : 0
-
   return (
     <nav
       className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
@@ -44,6 +43,7 @@ export default function MainPagination({
       </span>
       {totalPage > 1 && (
         <ReactPaginate
+          disableInitialCallback
           initialPage={initialPage}
           className="flex gap-2 items-center"
           pageLinkClassName="py-1 px-3 border rounded"
