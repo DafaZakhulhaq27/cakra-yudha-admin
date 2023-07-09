@@ -16,7 +16,7 @@ const MainLayout = ({ children }: Props) => {
       <MainNavbar toggleSidebar={() => setHideSidebar(!hideSidebar)} />
       <MainSidebar hideSidebar={hideSidebar} />
       <div className="p-4 sm:ml-64">
-        <div className="p-4 rounded-l mt-14">{children}</div>
+        <div className="p-5 rounded-l mt-14">{children}</div>
       </div>
     </>
   )

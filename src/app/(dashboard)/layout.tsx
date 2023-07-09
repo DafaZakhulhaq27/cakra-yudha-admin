@@ -13,7 +13,7 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <UserProfileProvider user={userProfile}>
-      <MainLayout>{children}</MainLayout>
+      <MainLayout> {children}</MainLayout>
     </UserProfileProvider>
   )
 }
