@@ -14,7 +14,6 @@ type Props = {
 
 export default function List({ res }: Props) {
   const { products, limit, skip, total } = res
-  console.log(products, 'p')
 
   return (
     <section className=" p-3 sm:p-5">

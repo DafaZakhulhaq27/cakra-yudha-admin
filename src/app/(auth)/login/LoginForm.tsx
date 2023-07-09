@@ -1,8 +1,12 @@
 'use client'
 
+import {
+  LoginModel,
+  initLoginForm,
+  loginModel,
+} from '@/app/(auth)/login/Models'
 import Button from '@/components/forms/button'
 import Input from '@/components/forms/input'
-import { LoginModel, initLoginForm, loginModel } from '@/models/auth'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Alert } from 'flowbite-react'
 import { signIn } from 'next-auth/react'

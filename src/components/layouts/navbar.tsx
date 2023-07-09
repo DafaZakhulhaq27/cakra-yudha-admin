@@ -1,3 +1,4 @@
+import { useUserContext } from '@/hooks/context'
 import { Dropdown } from 'flowbite-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,6 +9,8 @@ type Props = {
 }
 
 const MainNavbar = ({ toggleSidebar }: Props) => {
+  const { currentUser } = useUserContext()
+
   return (
     <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
@@ -37,19 +40,21 @@ const MainNavbar = ({ toggleSidebar }: Props) => {
           <Dropdown
             inline
             label={
-              <Image
-                width={40}
-                height={40}
-                className="w-8 h-8 rounded-full"
-                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                alt="user photo"
-              />
+              !!currentUser?.image && (
+                <Image
+                  width={40}
+                  height={40}
+                  className="w-8 h-8 rounded-full"
+                  src={currentUser?.image}
+                  alt="user photo"
+                />
+              )
             }
           >
             <Dropdown.Header>
-              <span className="block text-sm">Dafa Zakhulhaq</span>
+              <span className="block text-sm">{currentUser?.username}</span>
               <span className="block truncate text-sm font-medium">
-                dafa@gmail.com
+                {currentUser?.email}
               </span>
             </Dropdown.Header>
             <Dropdown.Item>

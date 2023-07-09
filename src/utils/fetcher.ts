@@ -5,17 +5,23 @@ import { catchBackendError } from './error'
 
 export type MethodType = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
-export async function fetcher<T>(
-  path: string | { fullUrl: string },
-  params?: any,
-  options: {
-    method: MethodType
+type FetchProps = {
+  path: string | { fullUrl: string }
+  params?: any
+  options?: {
+    method?: MethodType
     body?: object | null
-  } = {
+  }
+}
+
+export async function fetcher<T>({
+  path,
+  params,
+  options = {
     method: 'GET',
     body: null,
   },
-) {
+}: FetchProps) {
   const session = await getServerSession(authOptions)
   const token = `Bearer ${session?.user.bearerToken ?? ''}`
   const paramsUrl = params ? '?' + new URLSearchParams(params).toString() : ''
@@ -37,10 +43,10 @@ export async function fetcher<T>(
     headers.authorization = token
   }
 
-  const isGetMethod = options.method === 'GET'
-  const body = JSON.stringify(options.body) ?? null
+  const isGetMethod = options?.method === 'GET'
+  const body = options?.body ? JSON.stringify(options.body) : null
   const init: RequestInit = {
-    method: options.method,
+    method: options?.method || 'GET',
     headers,
     body: isGetMethod ? null : body,
   }

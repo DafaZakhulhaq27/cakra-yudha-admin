@@ -3,4 +3,4 @@ import { filter } from '../filter'
 import { GetAllProduct } from './model'
 
 export const getAllProducts = async (params: filter) =>
-  fetcher<GetAllProduct>('/products', params)
+  fetcher<GetAllProduct>({ path: '/products', params: params })

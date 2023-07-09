@@ -12,7 +12,5 @@ export default async function CRUDPage({ searchParams }: Props) {
     search: String(searchParams?.search ?? ''),
   })
 
-  console.log(res, 'res')
-
   return <List res={res} />
 }
