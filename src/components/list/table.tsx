@@ -23,9 +23,9 @@ type Data =
 type TableProps = {
   columns: Column[]
   data: Data[]
-  onDelete?: (() => void) | null
-  onEdit?: (() => void) | null
-  onView?: (() => void) | null
+  onDelete?: ((v: any) => void) | null
+  onEdit?: ((v: any) => void) | null
+  onView?: ((v: any) => void) | null
 }
 
 export default function Table({
@@ -37,7 +37,7 @@ export default function Table({
 }: TableProps) {
   const hasAction = !!onDelete || !!onEdit || !!onView
   const [openModal, setOpenModal] = useState<boolean>(false)
-  const rowNumber = useRef<number>(1)
+  const currentRow = useRef<any>({})
   const selectedNo = useRef<string>('1')
 
   const { currentParams } = useQueryNavigation()
@@ -86,7 +86,7 @@ export default function Table({
                         <HiEye
                           color="green"
                           cursor="pointer"
-                          onClick={onView!}
+                          onClick={() => onView(item)!}
                           size={20}
                         />
                       </Tooltip>
@@ -96,7 +96,7 @@ export default function Table({
                         <HiPencil
                           color="blue"
                           cursor="pointer"
-                          onClick={onEdit!}
+                          onClick={() => onEdit(item)!}
                           size={20}
                         />
                       </Tooltip>
@@ -110,6 +110,7 @@ export default function Table({
                             selectedNo.current = `${
                               (initialPage - 1) * initialLimit + index + 1
                             }`
+                            currentRow.current = item
                             setOpenModal(true)
                           }}
                           size={20}
@@ -141,7 +142,7 @@ export default function Table({
               <Button
                 color="failure"
                 onClick={() => {
-                  !!onDelete && onDelete()
+                  !!onDelete && onDelete(currentRow.current)
                   setOpenModal(false)
                 }}
               >

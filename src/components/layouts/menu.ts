@@ -1,33 +1,22 @@
-import { HiOutlineHome } from 'react-icons/hi';
-import { SidebarItemProps } from "./types";
+import { HiDatabase, HiTag, HiUser } from 'react-icons/hi'
+import { SidebarItemProps } from './types'
 
-const menu:SidebarItemProps[] = [
-    {
-        icon :  HiOutlineHome,
-        title : 'Home',
-        link : '/home',
-    },    
-    {
-        icon :  HiOutlineHome,
-        title : 'CRUD',
-        link : '/crud',
-    },
-    {
-        icon :  HiOutlineHome,
-        title : 'Page',
-        link : '/page_dropdown',
-        items : [
-            {
-                title : 'Section 1',
-                link : '/section1'
-            },
-            {
-                title : 'Section 2',
-                link : '/section2'
-            },
-        ]
-    },
-
+const menu: SidebarItemProps[] = [
+  {
+    icon: HiUser,
+    title: 'User',
+    link: '/user',
+  },
+  {
+    icon: HiDatabase,
+    title: 'Categories',
+    link: '/categories',
+  },
+  {
+    icon: HiTag,
+    title: 'Products',
+    link: '/products',
+  },
 ]
 
 export default menu

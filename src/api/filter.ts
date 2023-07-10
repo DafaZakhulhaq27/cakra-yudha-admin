@@ -1,5 +1,5 @@
 export type filter = {
-  skip: string
+  page: string
   limit: string
   search: string
 }

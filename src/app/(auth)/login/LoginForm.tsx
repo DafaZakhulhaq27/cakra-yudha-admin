@@ -68,13 +68,18 @@ const LoginForm = () => {
         )}
 
         <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-            <Input label="Username" name="username" placeholder="username" />
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-5"
+            noValidate
+          >
+            <Input label="Email" name="email" placeholder="email" required />
             <Input
               label="Password"
               type="password"
               name="password"
               placeholder="password"
+              required
             />
             <Button
               type="submit"

@@ -8,14 +8,16 @@ export const providers: Provider[] = [
     name: 'credential',
     credentials: {},
     async authorize(credentials) {
-      const { username, password } = credentials as LoginModel
-      const res = await login({ username, password })
-      if (res.token) {
+      const { email, password } = credentials as LoginModel
+      const res = await login({ email, password })
+
+      console.log(res, 'res')
+      if (res.status) {
         return {
           id: 'nextToken',
-          username,
+          email,
           password,
-          bearerToken: res.token,
+          bearerToken: res.data.token,
         }
       }
 

@@ -30,7 +30,7 @@ const Input = ({ label, ...props }: Props) => {
           errorMessage ? 'text-red-600' : 'text-gray-900'
         }`}
       >
-        {label}
+        {label} {props.required && <span className="text-red-500">*</span>}
       </label>
       <div className="mt-2">
         <div className="relative">

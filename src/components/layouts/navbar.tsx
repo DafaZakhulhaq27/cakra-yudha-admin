@@ -2,6 +2,7 @@ import { useUserContext } from '@/hooks/context'
 import { Dropdown } from 'flowbite-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { HiMenuAlt2 } from 'react-icons/hi'
 
 type Props = {
@@ -10,6 +11,7 @@ type Props = {
 
 const MainNavbar = ({ toggleSidebar }: Props) => {
   const { currentUser } = useUserContext()
+  const router = useRouter()
 
   return (
     <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -40,25 +42,23 @@ const MainNavbar = ({ toggleSidebar }: Props) => {
           <Dropdown
             inline
             label={
-              !!currentUser?.image && (
-                <Image
-                  width={40}
-                  height={40}
-                  className="w-8 h-8 rounded-full"
-                  src={currentUser?.image}
-                  alt="user photo"
-                />
-              )
+              <Image
+                width={40}
+                height={40}
+                className="w-8 h-8 rounded-full"
+                src="/logo.png"
+                alt="user photo"
+              />
             }
           >
             <Dropdown.Header>
-              <span className="block text-sm">{currentUser?.username}</span>
+              <span className="block text-sm">{currentUser?.name}</span>
               <span className="block truncate text-sm font-medium">
                 {currentUser?.email}
               </span>
             </Dropdown.Header>
-            <Dropdown.Item>
-              <Link href="/logout">Sign out</Link>
+            <Dropdown.Item onClick={() => router.push('/logout')}>
+              Sign out
             </Dropdown.Item>
           </Dropdown>
         </div>

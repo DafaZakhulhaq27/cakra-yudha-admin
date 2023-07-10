@@ -1,16 +1,17 @@
-import { fetcher } from '@/utils/fetcher'
-import { LoginData } from './model'
+import { dummyAPIResponse } from '../response'
+import { LoginData, dummyLoginResponse } from './model'
 
 type Login = {
-  username: string
+  email: string
   password: string
 }
 
-export const login = async ({ username, password }: Login) =>
-  fetcher<LoginData>({
-    path: '/auth/login',
-    options: {
-      method: 'POST',
-      body: { username, password },
-    },
-  })
+export const login = async ({ email, password }: Login) =>
+  // fetcher<LoginData>({
+  //   path: '/v1/login',
+  //   options: {
+  //     method: 'POST',
+  //     body: { email, password },
+  //   },
+  // })
+  dummyAPIResponse<LoginData>(dummyLoginResponse)
