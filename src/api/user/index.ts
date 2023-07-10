@@ -17,7 +17,7 @@ export const getDetailUser = async (id: string) =>
   dummyAPIResponse<GetDetailUser>(dummyUserResponse)
 
 export const createUser = async (form: UserModel) =>
-  //   fetcher<GetUser>({
+  //   fetcher<MainResponse>({
   //     path: '/v1/user',
   //     options: {
   //       method: 'POST',
@@ -27,7 +27,7 @@ export const createUser = async (form: UserModel) =>
   dummyAPIResponse<MainResponse>(dummyMainResponse)
 
 export const editUser = async (id: string, form: UserModel) =>
-  //   fetcher<GetUser>({
+  //   fetcher<MainResponse>({
   //     path: `/v1/user/${id}`,
   //     options: {
   //       method: 'PUT',
@@ -37,7 +37,7 @@ export const editUser = async (id: string, form: UserModel) =>
   dummyAPIResponse<MainResponse>(dummyMainResponse)
 
 export const deleteUser = async (id: string) =>
-  //   fetcher<GetUser>({
+  //   fetcher<MainResponse>({
   //     path: `/v1/user/${id}`,
   //     options: {
   //       method: 'DELETE',

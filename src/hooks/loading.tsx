@@ -22,7 +22,7 @@ function useLoading(): UseLoadingResult {
       <>
         {children}
         {isLoading && (
-          <div className="flex items-center justify-center fixed inset-0 bg-gray-500 bg-opacity-75 z-50 h-screen">
+          <div className="flex items-center justify-center  fixed top-0 left-0  bg-gray-200 bg-opacity-50 z-50 h-screen w-screen">
             <LoadingMain />
           </div>
         )}
