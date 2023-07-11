@@ -13,3 +13,9 @@ export const phoneNumberSchema: Schema<string> = string().refine(
     message: 'Invalid Indonesian phone number',
   },
 )
+
+export const PositiveNumberErrorMsg = 'must be a positive number and not zero'
+export const NumberErrorMsg = 'value must number'
+
+export const isPositiveNonZero = (value: string) => parseInt(value) > 0
+export const isNumber = (val: string) => !Number.isNaN(parseInt(val, 10))

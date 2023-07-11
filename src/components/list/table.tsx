@@ -11,7 +11,7 @@ import {
 type Column = {
   column: string
   name: string
-  render?: (value: string | number) => React.ReactNode
+  render?: (value: any) => React.ReactNode
 }
 
 type Data =
