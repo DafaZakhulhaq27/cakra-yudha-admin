@@ -59,7 +59,12 @@ export default function Form({ prefill }: Props) {
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3" noValidate>
         <Input label="Name" name="name" placeholder="name" required />
-        <InputFile label="Icon" name="icon" required />
+        <InputFile
+          label="Icon"
+          name="icon"
+          allowedTypes={['image/png', 'image/jpg', 'image/jpeg']}
+          required
+        />
         <Button
           type="submit"
           className="mt-8"
