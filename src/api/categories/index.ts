@@ -16,30 +16,22 @@ export const getDetailCategory = async (id: string) =>
   dummyAPIResponse<GetDetailCategory>(dummyCategoryResponse)
 
 type CategoryForm = {
-  icon: File
+  icon: string
   name: string
 }
 
 export const createCategory = async (form: CategoryForm) => {
-  const formData = new FormData()
-  formData.append('icon', form.icon)
-  formData.append('name', form.name)
-
   //   return fetcher<MainResponse>({
   //     path: '/v1/category',
   //     options: {
   //       method: 'POST',
-  //       body: formData,
+  //       body: form,
   //     },
   //   })
   return dummyAPIResponse<MainResponse>(dummyMainResponse)
 }
 
 export const editCategory = async (id: string, form: CategoryForm) => {
-  const formData = new FormData()
-  formData.append('icon', form.icon)
-  formData.append('name', form.name)
-
   //   fetcher<MainResponse>({
   //     path: `/v1/category/${id}`,
   //     options: {

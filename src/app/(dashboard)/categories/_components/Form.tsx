@@ -1,5 +1,6 @@
 'use client'
 
+import { createCategory, editCategory } from '@/api/categories'
 import { Category } from '@/api/categories/model'
 import Button from '@/components/forms/button'
 import InputFile from '@/components/forms/fileInput'
@@ -25,8 +26,7 @@ export default function Form({ prefill }: Props) {
     defaultValues: {
       id: prefill?._id,
       name: prefill?.name,
-      icon_url: prefill?.icon,
-      icon: null,
+      icon: prefill?.icon,
     },
   })
 
@@ -36,23 +36,22 @@ export default function Form({ prefill }: Props) {
   } = methods
 
   const onSubmit = async (data: CategoryModel) => {
-    console.log(data, 'data')
-    // try {
-    //   const res = prefill
-    //     ? await editUser(prefill._id, data)
-    //     : await createUser(data)
-    //   if (res.status) {
-    toast.success(`${prefill ? 'Edit' : 'Create'} User Success `)
-    startTransition(() => {
-      router.push(`/categories`)
-      router.refresh()
-    })
-    //   } else {
-    //     toast.error(`${prefill ? 'Edit' : 'Create'} User Failed `)
-    //   }
-    // } catch (error) {
-    //   toast.error(`${prefill ? 'Edit' : 'Create'} User Failed `)
-    // }
+    try {
+      const res = prefill
+        ? await editCategory(prefill._id, data)
+        : await createCategory(data)
+      if (res.status) {
+        toast.success(`${prefill ? 'Edit' : 'Create'} Category Success `)
+        startTransition(() => {
+          router.push(`/categories`)
+          router.refresh()
+        })
+      } else {
+        toast.error(`${prefill ? 'Edit' : 'Create'} Category Failed `)
+      }
+    } catch (error) {
+      toast.error(`${prefill ? 'Edit' : 'Create'} Category Failed `)
+    }
   }
 
   return (

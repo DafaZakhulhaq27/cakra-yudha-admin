@@ -1,6 +1,7 @@
 import { storage } from '@/config/firebase'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ChangeEvent, InputHTMLAttributes, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { HiUpload, HiX } from 'react-icons/hi'
@@ -91,7 +92,9 @@ export default function InputFile({ label, allowedTypes, ...props }: Props) {
       </div>
       {!!value && (
         <div className="flex flex-col  items-center justify-center gap-2">
-          <Image alt="image" src={value} width={100} height={100} />
+          <Link href={value} target="_blank">
+            <Image alt="image" src={value} width={100} height={100} />
+          </Link>
           {loading}
           {!loading && !props.disabled && (
             <div
