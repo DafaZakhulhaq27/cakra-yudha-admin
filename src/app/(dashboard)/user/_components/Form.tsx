@@ -44,20 +44,17 @@ export default function Form({ prefill }: Props) {
   } = methods
 
   const onSubmit = async (data: UserModel, e: any) => {
-    try {
-      const res = prefill
-        ? await editUser(prefill._id, data)
-        : await createUser(data)
-      if (res.status) {
-        toast.success(`${prefill ? 'Edit' : 'Create'} User Success `)
-        startTransition(() => {
-          router.push(`/user`)
-          router.refresh()
-        })
-      } else {
-        toast.error(`${prefill ? 'Edit' : 'Create'} User Failed `)
-      }
-    } catch (error) {
+    e.preventDefault()
+    const res = prefill
+      ? await editUser(prefill._id, data)
+      : await createUser(data)
+    if (res.status) {
+      toast.success(`${prefill ? 'Edit' : 'Create'} User Success `)
+      startTransition(() => {
+        router.push(`/user`)
+        router.refresh()
+      })
+    } else {
       toast.error(`${prefill ? 'Edit' : 'Create'} User Failed `)
     }
   }
@@ -85,11 +82,11 @@ export default function Form({ prefill }: Props) {
           data={[
             {
               label: 'Active',
-              value: 'active',
+              value: 'Active',
             },
             {
               label: 'Suspend',
-              value: 'suspend',
+              value: 'Suspend',
             },
           ]}
           required
@@ -103,17 +100,17 @@ export default function Form({ prefill }: Props) {
               ? [
                   {
                     label: 'User',
-                    value: 'user',
+                    value: 'User',
                   },
                 ]
               : [
                   {
                     label: 'User',
-                    value: 'user',
+                    value: 'User',
                   },
                   {
                     label: 'Admin',
-                    value: 'admin',
+                    value: 'Admin',
                   },
                 ]
           }
@@ -149,7 +146,7 @@ export default function Form({ prefill }: Props) {
           type="submit"
           className="mt-8"
           isProcessing={isSubmitting}
-          disabled={isSubmitting || isSubmitSuccessful}
+          disabled={isSubmitting}
         >
           {prefill ? 'Edit' : 'Save'}
         </Button>

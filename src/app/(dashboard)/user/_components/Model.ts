@@ -1,8 +1,8 @@
 import { NonEmptyErrorMsg, phoneNumberSchema } from '@/config/form'
 import { object, string, z } from 'zod'
 
-const statusValues = ['active', 'suspend'] as const
-const roleValues = ['user', 'admin', 'master'] as const
+const statusValues = ['Active', 'Suspend'] as const
+const roleValues = ['User', 'Admin', 'Master'] as const
 
 export const userModel = object({
   id: string().optional(),

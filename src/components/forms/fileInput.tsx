@@ -107,6 +107,11 @@ export default function InputFile({ label, allowedTypes, ...props }: Props) {
           )}
         </div>
       )}
+      {errorMessage && (
+        <p className="mt-2 text-sm text-red-600 dark:text-red-500 font-medium">
+          <>{errorMessage}</>
+        </p>
+      )}
     </>
   )
 }

@@ -17,6 +17,7 @@ const nextConfig = {
     ],
   },
   env: {
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     FB_API_KEY: process.env.FB_API_KEY,
     FB_AUTH_DOMAIN: process.env.FB_AUTH_DOMAIN,
     FB_PROJECT_ID: process.env.FB_PROJECT_ID,

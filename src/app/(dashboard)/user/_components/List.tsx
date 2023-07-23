@@ -62,7 +62,7 @@ export default function List({ res }: Props) {
               render: v => (
                 <span
                   className={`bg-${
-                    v === 'active' ? 'green' : 'red'
+                    v === 'Active' ? 'green' : 'red'
                   }-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded `}
                 >
                   {v}

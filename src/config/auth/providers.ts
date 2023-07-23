@@ -11,7 +11,6 @@ export const providers: Provider[] = [
       const { email, password } = credentials as LoginModel
       const res = await login({ email, password })
 
-      console.log(res, 'res')
       if (res.status) {
         return {
           id: 'nextToken',

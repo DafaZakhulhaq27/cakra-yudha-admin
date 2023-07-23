@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
+import { API_KEY } from '@/config/constant'
 import { getToken } from 'next-auth/jwt'
 import { NextRequest, NextResponse } from 'next/server'
-
 
 // ANCHOR helper
 // ================================
@@ -18,6 +18,7 @@ export async function GET(req: NextRequest) {
   const headers: HeadersInit = {
     accept: 'application/json',
     'Content-Type': 'application/json',
+    'X-API-KEY': API_KEY,
   }
   const token = await getToken({ req })
   if (token?.bearerToken) {
@@ -35,23 +36,24 @@ export async function DELETE(req: NextRequest) {
   const headers: HeadersInit = {
     accept: 'application/json',
     'Content-Type': 'application/json',
+    'X-API-KEY': API_KEY,
   }
   const token = await getToken({ req })
   if (token?.bearerToken) {
     headers.authorization = `Bearer ${token.bearerToken}`
   }
 
-  const res = await fetch(baseURL + path, { 
+  const res = await fetch(baseURL + path, {
     method: 'DELETE',
-    headers 
+    headers,
   })
   const json = await res.json()
   return NextResponse.json(json)
 }
 
-
 export async function POST(req: NextRequest) {
   const path = getPath(req.url)
+  const body = await req.json()
 
   const type = req.headers.get('content-type') ?? ''
   let formData
@@ -61,6 +63,7 @@ export async function POST(req: NextRequest) {
   }
   const headers: HeadersInit = {
     accept: 'application/json',
+    'X-API-KEY': API_KEY,
   }
   if (!type.includes('multipart/form-data')) {
     headers['Content-Type'] = 'application/json'
@@ -73,8 +76,9 @@ export async function POST(req: NextRequest) {
   const res = await fetch(baseURL + path, {
     method: 'POST',
     headers,
-    body: formData ?? req.body,
+    body: formData ?? JSON.stringify(body),
   })
+
   const json = await res.json()
   return NextResponse.json(json)
 }
@@ -91,6 +95,7 @@ export async function PUT(req: NextRequest) {
   }
   const headers: HeadersInit = {
     accept: 'application/json',
+    'X-API-KEY': API_KEY,
   }
   if (!type.includes('multipart/form-data')) {
     headers['Content-Type'] = 'application/json'
