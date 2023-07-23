@@ -46,7 +46,8 @@ export default function ScheduleModal({
     }
   }, [prefill])
 
-  const onSubmit = async (data: ScheduleModel) => {
+  const onSubmit = async (data: ScheduleModel, e: any) => {
+    e.stopPropagation()
     onSubmited(data)
     onClose()
     reset()
@@ -55,7 +56,7 @@ export default function ScheduleModal({
   return (
     <Modal show={showModal} onClose={onClose}>
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <form noValidate>
           <Modal.Header>{prefill ? 'Edit' : 'Add'} Schedule</Modal.Header>
           <Modal.Body className="space-y-3">
             <Input
@@ -93,7 +94,7 @@ export default function ScheduleModal({
             />
             <div className="pt-5 flex space-x-3">
               <Button
-                type="submit"
+                onClick={handleSubmit(onSubmit)}
                 isProcessing={isSubmitting}
                 disabled={isSubmitting}
               >
