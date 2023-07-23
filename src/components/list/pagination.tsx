@@ -1,6 +1,7 @@
 'use client'
 
 import { useQueryNavigation } from '@/hooks/navigation'
+import { useMemo } from 'react'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 import ReactPaginate from 'react-paginate'
 
@@ -26,6 +27,9 @@ export default function MainPagination({
   const initialPage = currentParams.get('page')
     ? parseInt(currentParams.get('page')!) - 1
     : 0
+
+  const totalItem = useMemo(() => totalData ?? 0, [totalData])
+
   return (
     <nav
       className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
@@ -34,11 +38,11 @@ export default function MainPagination({
       <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
         Showing
         <span className="font-semibold text-gray-900 dark:text-white mx-1">
-          {currentData ?? 0}
+          {totalItem < 10 ? totalItem : currentData}
         </span>
         of
         <span className="font-semibold text-gray-900 dark:text-white mx-1">
-          {totalData ?? 0}
+          {totalItem}
         </span>
       </span>
       {totalPage > 1 && (
