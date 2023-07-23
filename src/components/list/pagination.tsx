@@ -34,11 +34,11 @@ export default function MainPagination({
       <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
         Showing
         <span className="font-semibold text-gray-900 dark:text-white mx-1">
-          {currentData}
+          {currentData ?? 0}
         </span>
         of
         <span className="font-semibold text-gray-900 dark:text-white mx-1">
-          {totalData}
+          {totalData ?? 0}
         </span>
       </span>
       {totalPage > 1 && (

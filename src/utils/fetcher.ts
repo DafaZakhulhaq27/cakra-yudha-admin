@@ -21,7 +21,6 @@ export async function fetcher<T>({
     body: null,
   },
 }: FetchProps) {
-  console.log('url')
   let url = ''
   let baseURL = ''
   let token = ''

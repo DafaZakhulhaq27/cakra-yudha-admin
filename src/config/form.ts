@@ -1,6 +1,7 @@
 import { Schema, string } from 'zod'
 
 export const NonEmptyErrorMsg = 'Cant be Empty'
+export const stringRequired = string().nonempty(NonEmptyErrorMsg)
 
 const phoneNumberRegex = /^0\d{9,12}$/
 

@@ -19,8 +19,8 @@ export type UserProfile = {
   name: string
   company_name: string
   phone_number: string
-  status: 'active' | 'suspend'
-  role: 'user' | 'admin' | 'master'
+  status: 'Active' | 'Suspend'
+  role: 'User' | 'Admin' | 'Master'
   address: string
   is_new_login: boolean
 }

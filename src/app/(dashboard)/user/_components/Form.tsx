@@ -96,7 +96,7 @@ export default function Form({ prefill }: Props) {
           placeHolder="Select Role"
           name="role"
           data={
-            currentUser?.role === 'admin'
+            currentUser?.role === 'Admin'
               ? [
                   {
                     label: 'User',

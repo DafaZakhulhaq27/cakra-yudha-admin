@@ -80,7 +80,7 @@ export default function List({ res }: Props) {
             {
               column: 'Is Already Login',
               name: 'is_new_login',
-              render: v => <p className="font-bold	"> {v ? 'Yes' : 'No'} </p>,
+              render: v => <p className="font-bold	"> {v ? 'No' : 'Yes'} </p>,
             },
           ]}
           data={data}

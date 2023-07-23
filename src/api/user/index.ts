@@ -1,7 +1,7 @@
 import { UserModel } from '@/app/(dashboard)/user/_components/Model'
 import { fetcher } from '@/utils/fetcher'
 import { filter } from '../filter'
-import { MainResponse, dummyAPIResponse, dummyMainResponse } from '../response'
+import { MainResponse } from '../response'
 import { GetDetailUser, GetUser } from './model'
 
 export const getUser = async (params: filter) =>
@@ -20,20 +20,22 @@ export const createUser = async (form: UserModel) =>
   })
 
 export const editUser = async (id: string, form: UserModel) =>
-  //   fetcher<MainResponse>({
-  //     path: `/v1/user/${id}`,
-  //     options: {
-  //       method: 'PUT',
-  //       body: form,
-  //     },
-  //   })
-  dummyAPIResponse<MainResponse>(dummyMainResponse)
+  fetcher<MainResponse>({
+    path: `/api/v1/user`,
+    params: {
+      user_id: id,
+    },
+    options: {
+      method: 'PUT',
+      body: form,
+    },
+  })
 
 export const deleteUser = async (id: string) =>
   fetcher<MainResponse>({
-    path: `/v1/user`,
+    path: `/api/v1/user`,
     params: {
-      _id: id,
+      user_id: id,
     },
     options: {
       method: 'DELETE',
