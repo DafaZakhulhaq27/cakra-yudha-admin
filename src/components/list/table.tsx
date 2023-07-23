@@ -23,9 +23,9 @@ type Data =
 type TableProps = {
   columns: Column[]
   data: Data[]
-  onDelete?: ((v: any) => void) | null
-  onEdit?: ((v: any) => void) | null
-  onView?: ((v: any) => void) | null
+  onDelete?: ((v: any, index: number) => void) | null
+  onEdit?: ((v: any, index: number) => void) | null
+  onView?: ((v: any, index: number) => void) | null
 }
 
 export default function Table({
@@ -39,6 +39,7 @@ export default function Table({
   const [openModal, setOpenModal] = useState<boolean>(false)
   const currentRow = useRef<any>({})
   const selectedNo = useRef<string>('1')
+  const selectedIndex = useRef<number>(0)
 
   const { currentParams } = useQueryNavigation()
 
@@ -86,7 +87,7 @@ export default function Table({
                         <HiEye
                           color="green"
                           cursor="pointer"
-                          onClick={() => onView(item)!}
+                          onClick={() => onView(item, index)!}
                           size={20}
                         />
                       </Tooltip>
@@ -96,7 +97,7 @@ export default function Table({
                         <HiPencil
                           color="blue"
                           cursor="pointer"
-                          onClick={() => onEdit(item)!}
+                          onClick={() => onEdit(item, index)!}
                           size={20}
                         />
                       </Tooltip>
@@ -110,6 +111,7 @@ export default function Table({
                             selectedNo.current = `${
                               (initialPage - 1) * initialLimit + index + 1
                             }`
+                            selectedIndex.current = index
                             currentRow.current = item
                             setOpenModal(true)
                           }}
@@ -142,7 +144,8 @@ export default function Table({
               <Button
                 color="failure"
                 onClick={() => {
-                  !!onDelete && onDelete(currentRow.current)
+                  !!onDelete &&
+                    onDelete(currentRow.current, selectedIndex.current)
                   setOpenModal(false)
                 }}
               >

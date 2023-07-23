@@ -25,7 +25,7 @@ export const productModel = object({
   price: string()
     .refine(isNumber, { message: NumberErrorMsg })
     .refine(isPositiveNonZero, { message: PositiveNumberErrorMsg }),
-  category: string().nonempty(NonEmptyErrorMsg),
+  category_id: string().nonempty(NonEmptyErrorMsg),
 })
 
 export type ScheduleModel = z.infer<typeof scheduleModel>

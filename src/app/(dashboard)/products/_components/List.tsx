@@ -1,9 +1,7 @@
 'use client'
 
 import { Category } from '@/api/categories/model'
-import { deleteProduct } from '@/api/products'
 import { GetProducts, Product } from '@/api/products/model'
-import { UserProfile } from '@/app/(auth)/login/Models'
 import Button from '@/components/forms/button'
 import MainPagination from '@/components/list/pagination'
 import Search from '@/components/list/search'
@@ -11,7 +9,6 @@ import Table from '@/components/list/table'
 import useLoading from '@/hooks/loading'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import toast from 'react-hot-toast'
 import { HiPlus } from 'react-icons/hi'
 import { ScheduleModel } from './Model'
 
@@ -92,22 +89,22 @@ export default function List({ res }: Props) {
             },
           ]}
           data={data}
-          onDelete={async (item: UserProfile) => {
-            try {
-              setLoading(true)
-              const { status } = await deleteProduct(item._id)
-              if (status) {
-                router.refresh()
-                toast.success(`Delete Product Success `)
-              } else {
-                toast.error(`Delete Product Failed `)
-              }
-            } catch (error) {
-              toast.error(`Delete Product Failed `)
-            } finally {
-              setLoading(false)
-            }
-          }}
+          // onDelete={async (item: UserProfile) => {
+          //   try {
+          //     setLoading(true)
+          //     const { status } = await deleteProduct(item._id)
+          //     if (status) {
+          //       router.refresh()
+          //       toast.success(`Delete Product Success `)
+          //     } else {
+          //       toast.error(`Delete Product Failed `)
+          //     }
+          //   } catch (error) {
+          //     toast.error(`Delete Product Failed `)
+          //   } finally {
+          //     setLoading(false)
+          //   }
+          // }}
           onEdit={(item: Product) => router.push(`/products/${item._id}`)}
         />
       </div>

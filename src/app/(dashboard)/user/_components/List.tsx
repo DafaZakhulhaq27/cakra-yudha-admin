@@ -7,6 +7,7 @@ import Button from '@/components/forms/button'
 import MainPagination from '@/components/list/pagination'
 import Search from '@/components/list/search'
 import Table from '@/components/list/table'
+import { useUserContext } from '@/hooks/context'
 import useLoading from '@/hooks/loading'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -18,6 +19,7 @@ type Props = {
 }
 
 export default function List({ res }: Props) {
+  const { currentUser } = useUserContext()
   const router = useRouter()
   const { data, limit, total_data, total_page } = res
   const { setLoading, LoadingOverlay } = useLoading()
@@ -84,22 +86,26 @@ export default function List({ res }: Props) {
             },
           ]}
           data={data}
-          onDelete={async (item: UserProfile) => {
-            try {
-              setLoading(true)
-              const { status } = await deleteUser(item._id)
-              if (status) {
-                router.refresh()
-                toast.success(`Delete User Success `)
-              } else {
-                toast.error(`Delete User Failed `)
-              }
-            } catch (error) {
-              toast.error(`Delete User Failed `)
-            } finally {
-              setLoading(false)
-            }
-          }}
+          onDelete={
+            currentUser?.role === 'Master'
+              ? async (item: UserProfile) => {
+                  try {
+                    setLoading(true)
+                    const { status } = await deleteUser(item._id)
+                    if (status) {
+                      router.refresh()
+                      toast.success(`Delete User Success `)
+                    } else {
+                      toast.error(`Delete User Failed `)
+                    }
+                  } catch (error) {
+                    toast.error(`Delete User Failed `)
+                  } finally {
+                    setLoading(false)
+                  }
+                }
+              : null
+          }
           onEdit={(item: UserProfile) => router.push(`/user/${item._id}`)}
         />
       </div>

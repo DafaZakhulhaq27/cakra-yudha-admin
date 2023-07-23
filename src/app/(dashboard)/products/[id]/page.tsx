@@ -1,4 +1,4 @@
-import { getDetailUser } from '@/api/user'
+import { getDetailProduct } from '@/api/products'
 import Form from '../_components/Form'
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
 }
 
 export default async function page({ params }: Props) {
-  const { data } = await getDetailUser(params.id)
+  const { data } = await getDetailProduct(params.id)
 
   if (!data) {
     return null

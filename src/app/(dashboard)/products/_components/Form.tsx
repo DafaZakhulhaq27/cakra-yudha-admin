@@ -1,6 +1,6 @@
 'use client'
 
-import { getCategory } from '@/api/categories'
+import { getCategoryDropdown } from '@/api/categories'
 import { createProduct, editProduct } from '@/api/products'
 import { Product } from '@/api/products/model'
 import Button from '@/components/forms/button'
@@ -39,14 +39,14 @@ export default function Form({ prefill }: Props) {
       seat: String(prefill?.seat),
       program: prefill?.program,
       price: String(prefill?.price),
-      category: prefill?.category._id,
+      category_id: prefill?.category._id,
     },
   })
 
   const getCategories = async () => {
     try {
       setLoadingCateogry(true)
-      const { status, data } = await getCategory({
+      const { status, data } = await getCategoryDropdown({
         page: '1',
         limit: '30',
         search: '',
@@ -70,8 +70,9 @@ export default function Form({ prefill }: Props) {
   }, [])
 
   const {
+    getValues,
     handleSubmit,
-    formState: { isSubmitting, isSubmitSuccessful },
+    formState: { isSubmitting },
   } = methods
 
   const onSubmit = async (data: ProductModel, e: any) => {
@@ -96,43 +97,52 @@ export default function Form({ prefill }: Props) {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3" noValidate>
-        <Input label="Program" name="program" placeholder="program" required />
-        <Input
-          label="Seat"
-          name="seat"
-          placeholder="seat"
-          type="number"
-          required
-        />
-        <Input
-          label="Price"
-          name="price"
-          placeholder="price"
-          type="number"
-          required
-        />
-        {loadingCategory ? (
-          <LoadingMain />
-        ) : (
-          <Select
-            label="Category"
-            placeHolder="Select Status"
-            name="category"
-            data={categories.current}
+        <div className="w-full lg:w-1/2 space-y-3">
+          <Input
+            label="Program"
+            name="program"
+            placeholder="program"
             required
           />
-        )}
+          <Input
+            label="Seat"
+            name="seat"
+            placeholder="seat"
+            type="number"
+            required
+          />
+          <Input
+            label="Price"
+            name="price"
+            placeholder="price"
+            type="number"
+            required
+          />
+          {loadingCategory ? (
+            <LoadingMain />
+          ) : (
+            <Select
+              label="Category"
+              placeHolder="Select Status"
+              name="category_id"
+              data={categories.current}
+              required
+            />
+          )}
+        </div>
 
         <Schedule />
 
-        <Button
-          type="submit"
-          className="mt-8"
-          isProcessing={isSubmitting}
-          disabled={isSubmitting || isSubmitSuccessful}
-        >
-          {prefill ? 'Edit' : 'Save'}
-        </Button>
+        <div className="w-full lg:w-1/2 ">
+          <Button
+            type="submit"
+            className="mt-8"
+            isProcessing={isSubmitting}
+            disabled={isSubmitting}
+          >
+            {prefill ? 'Edit' : 'Save'}
+          </Button>
+        </div>
       </form>
     </FormProvider>
   )
