@@ -1,19 +1,18 @@
+import { fetcher } from '@/utils/fetcher'
 import { filter } from '../filter'
-import { MainResponse, dummyAPIResponse, dummyMainResponse } from '../response'
-import {
-  GetCategories,
-  GetDetailCategory,
-  dummyCategoriesListResponse,
-  dummyCategoryResponse,
-} from './model'
+import { MainResponse } from '../response'
+import { GetCategories, GetDetailCategory } from './model'
 
 export const getCategory = async (params: filter) =>
-  //   fetcher<GetCategories>({ path: '/v1/category', params: params })
-  dummyAPIResponse<GetCategories>(dummyCategoriesListResponse)
+  fetcher<GetCategories>({ path: '/v1/category', params: params })
 
 export const getDetailCategory = async (id: string) =>
-  // fetcher<GetDetailCategory>({ path: `/v1/category/${id}` })
-  dummyAPIResponse<GetDetailCategory>(dummyCategoryResponse)
+  fetcher<GetDetailCategory>({
+    path: `/v1/category`,
+    params: {
+      _id: id,
+    },
+  })
 
 type CategoryForm = {
   icon: string
@@ -21,32 +20,35 @@ type CategoryForm = {
 }
 
 export const createCategory = async (form: CategoryForm) => {
-  //   return fetcher<MainResponse>({
-  //     path: '/v1/category',
-  //     options: {
-  //       method: 'POST',
-  //       body: form,
-  //     },
-  //   })
-  return dummyAPIResponse<MainResponse>(dummyMainResponse)
+  return fetcher<MainResponse>({
+    path: '/api/v1/category',
+    options: {
+      method: 'POST',
+      body: form,
+    },
+  })
 }
 
 export const editCategory = async (id: string, form: CategoryForm) => {
-  //   fetcher<MainResponse>({
-  //     path: `/v1/category/${id}`,
-  //     options: {
-  //       method: 'PUT',
-  //       body: form,
-  //     },
-  //   })
-  return dummyAPIResponse<MainResponse>(dummyMainResponse)
+  return fetcher<MainResponse>({
+    path: '/api/v1/category',
+    params: {
+      _id: id,
+    },
+    options: {
+      method: 'PUT',
+      body: form,
+    },
+  })
 }
 
 export const deleteCategory = async (id: string) =>
-  //   fetcher<MainResponse>({
-  //     path: `/v1/category/${id}`,
-  //     options: {
-  //       method: 'DELETE',
-  //     },
-  //   })
-  dummyAPIResponse<MainResponse>(dummyMainResponse)
+  fetcher<MainResponse>({
+    path: `/api/v1/category`,
+    params: {
+      _id: id,
+    },
+    options: {
+      method: 'DELETE',
+    },
+  })

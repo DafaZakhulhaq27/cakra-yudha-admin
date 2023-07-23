@@ -5,7 +5,6 @@ import { Category } from '@/api/categories/model'
 import Button from '@/components/forms/button'
 import InputFile from '@/components/forms/fileInput'
 import Input from '@/components/forms/input'
-import { useUserContext } from '@/hooks/context'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { startTransition } from 'react'
@@ -18,7 +17,6 @@ type Props = {
 }
 
 export default function Form({ prefill }: Props) {
-  const { currentUser } = useUserContext()
   const router = useRouter()
   const methods = useForm<CategoryModel>({
     mode: 'onTouched',
@@ -32,7 +30,7 @@ export default function Form({ prefill }: Props) {
 
   const {
     handleSubmit,
-    formState: { isSubmitting, isSubmitSuccessful },
+    formState: { isSubmitting },
   } = methods
 
   const onSubmit = async (data: CategoryModel) => {
@@ -59,6 +57,7 @@ export default function Form({ prefill }: Props) {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3" noValidate>
         <Input label="Name" name="name" placeholder="name" required />
         <InputFile
+          disabled={isSubmitting}
           label="Icon"
           name="icon"
           allowedTypes={['image/png', 'image/jpg', 'image/jpeg']}
@@ -68,7 +67,7 @@ export default function Form({ prefill }: Props) {
           type="submit"
           className="mt-8"
           isProcessing={isSubmitting}
-          disabled={isSubmitting || isSubmitSuccessful}
+          disabled={isSubmitting}
         >
           {prefill ? 'Edit' : 'Save'}
         </Button>
