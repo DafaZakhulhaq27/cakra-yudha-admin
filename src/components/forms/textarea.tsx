@@ -24,7 +24,7 @@ export default function Textarea({ label, ...props }: Props) {
       </label>
       <textarea
         id={props.name}
-        className={`block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 ${
+        className={`block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300 ${
           errorMessage
             ? 'focus:ring-red-500 ring-red-600'
             : 'ring-gray-300 focus:ring-primary'

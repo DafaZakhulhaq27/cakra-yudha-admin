@@ -60,7 +60,7 @@ export default function Form({ prefill }: Props) {
         <Input label="Title" name="title" placeholder="title" required />
         <Textarea label="Desc" name="desc" placeholder="desc" required />
         <Select
-          label="Role"
+          label="Status"
           placeHolder="Select Status"
           name="status"
           data={[
