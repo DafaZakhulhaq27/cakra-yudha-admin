@@ -1,3 +1,5 @@
+import { redirect } from 'next/navigation'
+
 export interface ErrorJson {
   // error: string === error.message
   // statusCode: number === error.code
@@ -23,7 +25,11 @@ export async function catchBackendError<T>(res: Response) {
       message = json.message
     }
 
-    console.log(`=> ${res.url} code`, message,res.status)
+    if (message === 'jwt expired') {
+      redirect('/logout')
+    }
+
+    console.log(`=> ${res.url} code`, message, res.status)
     const error = new BackendError(message, res.status)
     return Promise.reject(error)
   }
