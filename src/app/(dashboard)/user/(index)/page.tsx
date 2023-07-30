@@ -7,6 +7,7 @@ interface Props {
 
 export default async function UserPage({ searchParams }: Props) {
   const res = await getUser({
+    role: String(searchParams?.role ?? ''),
     limit: String(searchParams?.limit ?? 10),
     page: String(searchParams?.page ?? 1),
     search: String(searchParams?.search ?? ''),

@@ -4,7 +4,11 @@ import { filter } from '../filter'
 import { MainResponse } from '../response'
 import { GetDetailUser, GetUser } from './model'
 
-export const getUser = async (params: filter) =>
+type UserParams = {
+  role?: string
+} & filter
+
+export const getUser = async (params: UserParams) =>
   fetcher<GetUser>({ path: '/v1/user', params: params })
 
 export const getDetailUser = async (id: string) =>
