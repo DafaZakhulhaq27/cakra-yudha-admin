@@ -33,8 +33,8 @@ export default function Form({ prefill }: Props) {
       status: prefill?.status,
       role: prefill?.role,
       address: prefill?.address,
-      password: '',
-      password_confirmation: '',
+      // password: '',
+      // password_confirmation: '',
     },
   })
 
@@ -122,7 +122,7 @@ export default function Form({ prefill }: Props) {
           name="address"
           placeholder="Write your address"
         />
-        {!prefill && (
+        {/* {!prefill && (
           <>
             <Input
               type="password"
@@ -140,7 +140,7 @@ export default function Form({ prefill }: Props) {
               required
             />
           </>
-        )}
+        )} */}
 
         <Button
           type="submit"

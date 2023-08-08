@@ -21,36 +21,36 @@ export const userModel = object({
     roleValues.includes(value as (typeof roleValues)[number]),
   ),
   address: string().nullable().optional(),
-  password: string().optional(),
-  password_confirmation: string().optional(),
+  // password: string().optional(),
+  // password_confirmation: string().optional(),
 })
-  .refine(
-    data => {
-      return data.password !== '' || data.id
-    },
-    {
-      message: "Can't be empty",
-      path: ['password'],
-    },
-  )
-  .refine(
-    data => {
-      return data.password_confirmation !== '' || data.id
-    },
-    {
-      message: "Can't be empty",
-      path: ['password_confirmation'],
-    },
-  )
-  .refine(
-    data => {
-      return data.password_confirmation === data.password || data.id
-    },
-    {
-      message: "Password didn't match",
-      path: ['password_confirmation'],
-    },
-  )
+  // .refine(
+  //   data => {
+  //     return data.password !== '' || data.id
+  //   },
+  //   {
+  //     message: "Can't be empty",
+  //     path: ['password'],
+  //   },
+  // )
+  // .refine(
+  //   data => {
+  //     return data.password_confirmation !== '' || data.id
+  //   },
+  //   {
+  //     message: "Can't be empty",
+  //     path: ['password_confirmation'],
+  //   },
+  // )
+  // .refine(
+  //   data => {
+  //     return data.password_confirmation === data.password || data.id
+  //   },
+  //   {
+  //     message: "Password didn't match",
+  //     path: ['password_confirmation'],
+  //   },
+  // )
   .refine(
     data => {
       return data.role !== 'User' || data.company_name
