@@ -18,7 +18,10 @@ const menu: SidebarItemProps[] = [
         title: 'Currency',
         link: '/currency',
       },
-
+      {
+        title: 'TimeZone',
+        link: '/timezone',
+      },
       {
         title: 'Employee',
         link: '/employee',
