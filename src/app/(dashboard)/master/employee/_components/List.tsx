@@ -1,0 +1,101 @@
+'use client'
+
+import { deleteEmployee } from '@/api/employee'
+import { Employee, GetEmployee } from '@/api/employee/model'
+import { deleteUser } from '@/api/user'
+import { GetUser } from '@/api/user/model'
+import { UserProfile } from '@/app/(auth)/login/Models'
+import Button from '@/components/forms/button'
+import MainPagination from '@/components/list/pagination'
+import Search from '@/components/list/search'
+import SelectFilter from '@/components/list/selectFilter'
+import Table from '@/components/list/table'
+import { useUserContext } from '@/hooks/context'
+import useLoading from '@/hooks/loading'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
+import { HiPlus } from 'react-icons/hi'
+
+type Props = {
+  res: GetEmployee
+}
+
+export default function List({ res }: Props) {
+  const router = useRouter()
+  const { data, limit, total_data, total_page } = res
+  const { setLoading, LoadingOverlay } = useLoading()
+
+  return (
+    <LoadingOverlay>
+      <div className="flex flex-col xl:flex-row items-center justify-between space-y-3 xl:space-y-0 xl:space-x-4 p-4">
+        <div className="w-full xl:w-1/2 flex gap-5">
+          <Search />
+        </div>
+        <div className="w-full xl:w-auto flex flex-col xl:flex-row space-y-2 xl:space-y-0 items-stretch xl:items-center justify-end xl:space-x-3 flex-shrink-0">
+          <Link href="/master/employee/create">
+            <Button>
+              <HiPlus />
+              Add Employee
+            </Button>
+          </Link>
+        </div>
+      </div>
+      <div className="overflow-x-auto">
+        <Table
+          columns={[
+            {
+              column: 'Name',
+              name: 'first_name',
+            },
+            {
+              column: 'Email',
+              name: 'email',
+            },
+            {
+              column: 'Contact Number',
+              name: 'contact_number',
+            },
+            {
+              column: 'Username',
+              name: 'username',
+            },
+            {
+              column: 'Company',
+              name: 'company',
+            },
+            {
+              column: 'Group',
+              name: 'group',
+            },
+          ]}
+          data={data}
+          onDelete={async (item: Employee) => {
+            try {
+              setLoading(true)
+              const { status } = await deleteEmployee(item._id)
+              if (status) {
+                router.refresh()
+                toast.success(`Delete Employee Success `)
+              } else {
+                toast.error(`Delete Employee Failed `)
+              }
+            } catch (error) {
+              toast.error(`Delete Employee Failed `)
+            } finally {
+              setLoading(false)
+            }
+          }}
+          onEdit={(item: Employee) =>
+            router.push(`/master/employee/${item._id}`)
+          }
+        />
+      </div>
+      <MainPagination
+        totalPage={total_page}
+        totalData={total_data}
+        currentData={limit}
+      />
+    </LoadingOverlay>
+  )
+}
