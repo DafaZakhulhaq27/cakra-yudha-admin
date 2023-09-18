@@ -1,9 +1,8 @@
-import { UserModel } from '@/app/(dashboard)/user/_components/Model'
+import { CurrencyModel } from '@/app/(dashboard)/master/currency/_components/Model'
 import { fetcher } from '@/utils/fetcher'
 import { filter } from '../filter'
 import { MainResponse } from '../response'
 import { GetCurrency, GetDetaiCurrency } from './model'
-import { CurrencyModel } from '@/app/(dashboard)/master/currency/_components/Model'
 
 type CurrencyParams = filter
 
