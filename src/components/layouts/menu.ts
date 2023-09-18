@@ -15,6 +15,11 @@ const menu: SidebarItemProps[] = [
     access: ['Admin', 'Master'],
     items: [
       {
+        title: 'Currency',
+        link: '/currency',
+      },
+
+      {
         title: 'Employee',
         link: '/employee',
       },

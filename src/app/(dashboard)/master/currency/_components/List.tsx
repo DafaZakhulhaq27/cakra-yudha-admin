@@ -1,7 +1,7 @@
 'use client'
 
-import { deleteEmployee } from '@/api/employee'
-import { Employee, GetEmployee } from '@/api/employee/model'
+import { deleteCurrency } from '@/api/currency'
+import { Currency, GetCurrency } from '@/api/currency/model'
 import Button from '@/components/forms/button'
 import LayoutPage from '@/components/layouts/layoutPage'
 import MainPagination from '@/components/list/pagination'
@@ -14,7 +14,7 @@ import toast from 'react-hot-toast'
 import { HiPlus } from 'react-icons/hi'
 
 type Props = {
-  res: GetEmployee
+  res: GetCurrency
 }
 
 export default function List({ res }: Props) {
@@ -24,16 +24,16 @@ export default function List({ res }: Props) {
 
   return (
     <LoadingOverlay>
-      <LayoutPage name="Employee">
+      <LayoutPage name="Currency">
         <div className="flex flex-col xl:flex-row items-center justify-between space-y-3 xl:space-y-0 xl:space-x-4 p-4">
           <div className="w-full xl:w-1/2 flex gap-5">
             <Search />
           </div>
           <div className="w-full xl:w-auto flex flex-col xl:flex-row space-y-2 xl:space-y-0 items-stretch xl:items-center justify-end xl:space-x-3 flex-shrink-0">
-            <Link href="/master/employee/create">
+            <Link href="/master/currency/create">
               <Button>
                 <HiPlus />
-                Add Employee
+                Add Currency
               </Button>
             </Link>
           </div>
@@ -43,48 +43,28 @@ export default function List({ res }: Props) {
             columns={[
               {
                 column: 'Name',
-                name: 'first_name',
-              },
-              {
-                column: 'Email',
-                name: 'email',
-              },
-              {
-                column: 'Contact Number',
-                name: 'contact_number',
-              },
-              {
-                column: 'Username',
-                name: 'username',
-              },
-              {
-                column: 'Company',
-                name: 'company',
-              },
-              {
-                column: 'Group',
-                name: 'group',
+                name: 'name',
               },
             ]}
             data={data}
-            onDelete={async (item: Employee) => {
+            onDelete={async (item: Currency) => {
               try {
                 setLoading(true)
-                const { status } = await deleteEmployee(item._id)
+                const { status } = await deleteCurrency(item._id)
                 if (status) {
                   router.refresh()
-                  toast.success(`Delete Employee Success `)
+                  toast.success(`Delete Currency Success `)
                 } else {
-                  toast.error(`Delete Employee Failed `)
+                  toast.error(`Delete Currency Failed `)
                 }
               } catch (error) {
-                toast.error(`Delete Employee Failed `)
+                toast.error(`Delete Currency Failed `)
               } finally {
                 setLoading(false)
               }
             }}
-            onEdit={(item: Employee) =>
-              router.push(`/master/employee/${item._id}`)
+            onEdit={(item: Currency) =>
+              router.push(`/master/currency/${item._id}`)
             }
           />
         </div>
