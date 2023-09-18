@@ -35,7 +35,7 @@ const MainNavbar = ({ toggleSidebar }: Props) => {
                 alt="FlowBite Logo"
               />
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                Hijrah Bersama
+                Cakra Yudha
               </span>
             </Link>
           </div>
@@ -52,7 +52,7 @@ const MainNavbar = ({ toggleSidebar }: Props) => {
             }
           >
             <Dropdown.Header>
-              <span className="block text-sm">{currentUser?.name}</span>
+              <span className="block text-sm">{currentUser?.first_name}</span>
               <span className="block truncate text-sm font-medium">
                 {currentUser?.email}
               </span>

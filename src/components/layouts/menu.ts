@@ -1,12 +1,24 @@
-import { HiUser } from 'react-icons/hi'
+import { HiDatabase, HiHome } from 'react-icons/hi'
 import { SidebarItemProps } from './types'
 
 const menu: SidebarItemProps[] = [
   {
-    icon: HiUser,
-    title: 'User',
-    link: '/user',
+    icon: HiHome,
+    title: 'Dashboard',
+    link: '/home',
     access: ['Admin', 'Master'],
+  },
+  {
+    icon: HiDatabase,
+    title: 'Master',
+    link: '/master',
+    access: ['Admin', 'Master'],
+    items: [
+      {
+        title: 'Employee',
+        link: '/employee',
+      },
+    ],
   },
 ]
 

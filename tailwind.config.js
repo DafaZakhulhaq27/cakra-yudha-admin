@@ -8,7 +8,7 @@ module.exports = {
   ],
   theme: {
     colors: {
-      primary: '#274218',
+      primary: 'black',
     },
   },
   plugins: [require('flowbite/plugin')],

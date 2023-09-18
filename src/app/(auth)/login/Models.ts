@@ -16,11 +16,11 @@ export const initLoginForm = {
 export type UserProfile = {
   _id: string
   email: string
-  name: string
-  company_name: string
-  phone_number: string
-  status: 'Active' | 'Suspend'
-  role: 'User' | 'Admin' | 'Master'
+  first_name: string
+  gender: string
+  role: string
+  contact_number: string
+  status: string
   address: string
   is_new_login: boolean
 }

@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation'
+import Greeting from './_components/Greeting'
 
-export default async function Home() {
-  redirect('/user')
+export default function Home() {
+  return <Greeting />
 }

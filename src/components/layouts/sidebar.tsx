@@ -10,9 +10,10 @@ type Props = {
 const Sidebar = ({ hideSidebar }: Props) => {
   const { currentUser } = useUserContext()
 
-  const filteredMenu = menu.filter(item => {
-    return currentUser?.role && item.access?.includes(currentUser.role)
-  })
+  // const filteredMenu = menu.filter(item => {
+  //   return currentUser?.role && item.access?.includes(currentUser.role)
+  // })
+  const filteredMenu = menu
 
   return (
     <aside
