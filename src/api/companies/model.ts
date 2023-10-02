@@ -6,6 +6,7 @@ import { Timezone } from '../timezone/model'
 export type Company = {
   _id: string
   username: string
+  company_name: string
   company_type: string
   contact_number: string
   website: string

@@ -42,6 +42,10 @@ const menu: SidebarItemProps[] = [
         title: 'Companies',
         link: '/companies',
       },
+      {
+        title: 'Locations',
+        link: '/locations',
+      },
     ],
   },
 ]
