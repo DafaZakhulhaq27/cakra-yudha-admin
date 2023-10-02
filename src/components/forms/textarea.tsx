@@ -13,7 +13,7 @@ export default function Textarea({ label, ...props }: Props) {
   const errorMessage = errors[props.name ?? '']?.message
 
   return (
-    <>
+    <div>
       <label
         htmlFor={props.name}
         className={`block mb-2 text-sm font-medium text-gray-900 ${
@@ -37,6 +37,6 @@ export default function Textarea({ label, ...props }: Props) {
           <>{errorMessage}</>
         </p>
       )}
-    </>
+    </div>
   )
 }

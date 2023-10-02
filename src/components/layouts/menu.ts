@@ -1,4 +1,4 @@
-import { HiDatabase, HiHome } from 'react-icons/hi'
+import { HiDatabase, HiHome, HiOfficeBuilding } from 'react-icons/hi'
 import { SidebarItemProps } from './types'
 
 const menu: SidebarItemProps[] = [
@@ -6,13 +6,13 @@ const menu: SidebarItemProps[] = [
     icon: HiHome,
     title: 'Dashboard',
     link: '/home',
-    access: ['Admin', 'Master'],
+    access: ['superadmin'],
   },
   {
     icon: HiDatabase,
     title: 'Master',
     link: '/master',
-    access: ['Admin', 'Master'],
+    access: ['superadmin'],
     items: [
       {
         title: 'Company Type',
@@ -29,6 +29,18 @@ const menu: SidebarItemProps[] = [
       {
         title: 'Employee',
         link: '/employee',
+      },
+    ],
+  },
+  {
+    icon: HiOfficeBuilding,
+    title: 'Organization',
+    link: '/organization',
+    access: ['superadmin'],
+    items: [
+      {
+        title: 'Companies',
+        link: '/companies',
       },
     ],
   },

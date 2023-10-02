@@ -18,10 +18,10 @@ export default function Select({ label, placeHolder, data, ...props }: Props) {
   const errorMessage = errors[props.name ?? '']?.message
 
   return (
-    <>
+    <div>
       <label
         htmlFor={props.name}
-        className={`block text-sm font-medium leading-6  ${
+        className={`block text-sm font-medium leading-6 mb-2 ${
           errorMessage ? 'text-red-600' : 'text-gray-900'
         }`}
       >
@@ -29,7 +29,7 @@ export default function Select({ label, placeHolder, data, ...props }: Props) {
       </label>
       <select
         id={props.name}
-        className={`border border-gray-300 text-gray-900 text-sm rounded-lg ${
+        className={`border border-gray-300 h-9 text-gray-900 text- rounded-lg ${
           errorMessage
             ? 'focus:ring-red-500 ring-red-600'
             : 'ring-gray-300 focus:ring-primary'
@@ -49,6 +49,6 @@ export default function Select({ label, placeHolder, data, ...props }: Props) {
           <>{errorMessage}</>
         </p>
       )}
-    </>
+    </div>
   )
 }

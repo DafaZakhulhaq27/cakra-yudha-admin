@@ -10,6 +10,9 @@ type TimezoneParams = filter
 export const getTimezone = async (params: TimezoneParams) =>
   fetcher<GetTimezone>({ path: '/v1/timezone', params: params })
 
+export const getTimezoneDropdown = async (params: TimezoneParams) =>
+  fetcher<GetTimezone>({ path: '/api/v1/timezone', params: params })
+
 export const getDetailTimezone = async (id: string) =>
   fetcher<GetDetaiTimezone>({ path: `/v1/timezone`, params: { _id: id } })
 

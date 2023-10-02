@@ -9,6 +9,9 @@ type CurrencyParams = filter
 export const getCurrency = async (params: CurrencyParams) =>
   fetcher<GetCurrency>({ path: '/v1/currency', params: params })
 
+export const getCurrencyDropdown = async (params: CurrencyParams) =>
+  fetcher<GetCurrency>({ path: '/api/v1/currency', params: params })
+
 export const getDetailCurrency = async (id: string) =>
   fetcher<GetDetaiCurrency>({ path: `/v1/currency`, params: { _id: id } })
 

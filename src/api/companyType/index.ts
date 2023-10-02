@@ -10,6 +10,9 @@ type CompanyTypeParams = filter
 export const getCompanyType = async (params: CompanyTypeParams) =>
   fetcher<GetCompanyType>({ path: '/v1/company_type', params: params })
 
+export const getCompanyTypeDropdown = async (params: CompanyTypeParams) =>
+  fetcher<GetCompanyType>({ path: '/api/v1/company_type', params: params })
+
 export const getDetailCompanyType = async (id: string) =>
   fetcher<GetDetaiCompanyType>({
     path: `/v1/company_type`,
