@@ -29,7 +29,7 @@ export default function Select({ label, placeHolder, data, ...props }: Props) {
       </label>
       <select
         id={props.name}
-        className={`border border-gray-300 h-9 text-gray-900 text- rounded-lg ${
+        className={`border border-gray-300 text-gray-900 text- rounded-lg ${
           errorMessage
             ? 'focus:ring-red-500 ring-red-600'
             : 'ring-gray-300 focus:ring-primary'

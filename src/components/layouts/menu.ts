@@ -1,4 +1,9 @@
-import { HiDatabase, HiHome, HiOfficeBuilding } from 'react-icons/hi'
+import {
+  HiDatabase,
+  HiHome,
+  HiOfficeBuilding,
+  HiBriefcase,
+} from 'react-icons/hi'
 import { SidebarItemProps } from './types'
 
 const menu: SidebarItemProps[] = [
@@ -45,6 +50,22 @@ const menu: SidebarItemProps[] = [
       {
         title: 'Locations',
         link: '/locations',
+      },
+    ],
+  },
+  {
+    icon: HiBriefcase,
+    title: 'Valet Master',
+    link: '/valet_master',
+    access: ['superadmin'],
+    items: [
+      {
+        title: 'Client',
+        link: '/client',
+      },
+      {
+        title: 'Project',
+        link: '/project',
       },
     ],
   },

@@ -2,6 +2,7 @@ import { fetcher } from '@/utils/fetcher'
 import { filter } from '../filter'
 import { MainResponse } from '../response'
 import { GetDetaiLocation, GetLocation } from './model'
+import { LocationModel } from '@/app/(dashboard)/organization/locations/_components/Model'
 
 type LocationParams = filter
 
@@ -17,7 +18,7 @@ export const getDetailLocation = async (id: string) =>
     params: { _id: id },
   })
 
-export const createLocation = async (form: {}) =>
+export const createLocation = async (form: LocationModel) =>
   fetcher<MainResponse>({
     path: '/api/v1/location',
     options: {
@@ -26,7 +27,7 @@ export const createLocation = async (form: {}) =>
     },
   })
 
-export const editLocation = async (id: string, form: {}) =>
+export const editLocation = async (id: string, form: LocationModel) =>
   fetcher<MainResponse>({
     path: `/api/v1/location`,
     params: {
