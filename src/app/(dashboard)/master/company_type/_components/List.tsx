@@ -8,6 +8,7 @@ import LayoutPage from '@/components/layouts/layoutPage'
 import MainPagination from '@/components/list/pagination'
 import Search from '@/components/list/search'
 import Table from '@/components/list/table'
+import { COMPANY_TYPE_PAGE_TITLE } from '@/constant/page'
 import useLoading from '@/hooks/loading'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -25,7 +26,7 @@ export default function List({ res }: Props) {
 
   return (
     <LoadingOverlay>
-      <LayoutPage name="Company Type">
+      <LayoutPage name={COMPANY_TYPE_PAGE_TITLE}>
         <div className="flex flex-col xl:flex-row items-center justify-between space-y-3 xl:space-y-0 xl:space-x-4 p-4">
           <div className="w-full xl:w-1/2 flex gap-5">
             <Search />
@@ -34,7 +35,7 @@ export default function List({ res }: Props) {
             <Link href="/master/company_type/create">
               <Button>
                 <HiPlus />
-                Add Company Type
+                Add {COMPANY_TYPE_PAGE_TITLE}
               </Button>
             </Link>
           </div>
@@ -54,12 +55,12 @@ export default function List({ res }: Props) {
                 const { status } = await deleteCompanyType(item._id)
                 if (status) {
                   router.refresh()
-                  toast.success(`Delete Company Type Success `)
+                  toast.success(`Delete ${COMPANY_TYPE_PAGE_TITLE} Success `)
                 } else {
-                  toast.error(`Delete Company Type Failed `)
+                  toast.error(`Delete ${COMPANY_TYPE_PAGE_TITLE} Failed `)
                 }
               } catch (error) {
-                toast.error(`Delete Company Type Failed `)
+                toast.error(`Delete ${COMPANY_TYPE_PAGE_TITLE} Failed `)
               } finally {
                 setLoading(false)
               }

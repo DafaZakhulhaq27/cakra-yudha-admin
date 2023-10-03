@@ -12,6 +12,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { TimezoneModel, timezoneModel } from './Model'
 import { createTimezone, editTimezone } from '@/api/timezone'
+import { TIMEZONE_PAGE_TITLE } from '@/constant/page'
 
 type Props = {
   prefill?: Timezone
@@ -39,18 +40,24 @@ export default function Form({ prefill }: Props) {
       ? await editTimezone(prefill._id, data)
       : await createTimezone(data)
     if (res.status) {
-      toast.success(`${prefill ? 'Edit' : 'Create'} TimeZone Success `)
+      toast.success(
+        `${prefill ? 'Edit' : 'Create'} ${TIMEZONE_PAGE_TITLE} Success `,
+      )
       startTransition(() => {
         router.push(`/master/timezone`)
         router.refresh()
       })
     } else {
-      toast.error(`${prefill ? 'Edit' : 'Create'} TimeZone Failed `)
+      toast.error(
+        `${prefill ? 'Edit' : 'Create'} ${TIMEZONE_PAGE_TITLE} Failed ${
+          res.message
+        }`,
+      )
     }
   }
 
   return (
-    <LayoutPage name={`${prefill ? 'Edit' : 'Add'} TimeZone`}>
+    <LayoutPage name={`${prefill ? 'Edit' : 'Add'} ${TIMEZONE_PAGE_TITLE}`}>
       <div className="w-full lg:w-1/2 mt-4">
         <FormProvider {...methods}>
           <form

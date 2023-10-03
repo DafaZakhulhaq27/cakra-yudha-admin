@@ -15,6 +15,7 @@ import { startTransition } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { ProjectModel, projectModel } from './Model'
+import { PROJECT_PAGE_TITLE } from '@/constant/page'
 
 type Props = {
   prefill?: ProjectDetail
@@ -76,20 +77,24 @@ export default function Form({ prefill }: Props) {
       : await createProject(formData)
 
     if (res.status) {
-      toast.success(`${prefill ? 'Edit' : 'Create'} Project Success `)
+      toast.success(
+        `${prefill ? 'Edit' : 'Create'} ${PROJECT_PAGE_TITLE} Success `,
+      )
       startTransition(() => {
         router.push(`/security_master/projects`)
         router.refresh()
       })
     } else {
       toast.error(
-        `${prefill ? 'Edit' : 'Create'} Project Failed ${res.message} `,
+        `${prefill ? 'Edit' : 'Create'} ${PROJECT_PAGE_TITLE} Failed ${
+          res.message
+        } `,
       )
     }
   }
 
   return (
-    <LayoutPage name={`${prefill ? 'Edit' : 'Add'} Project`}>
+    <LayoutPage name={`${prefill ? 'Edit' : 'Add'} ${PROJECT_PAGE_TITLE}`}>
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmit(onSubmit)}

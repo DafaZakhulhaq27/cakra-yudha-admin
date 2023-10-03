@@ -11,6 +11,7 @@ import toast from 'react-hot-toast'
 import { startTransition } from 'react'
 import Input from '@/components/forms/input'
 import Button from '@/components/forms/button'
+import { CURRENCY_PAGE_TITLE } from '@/constant/page'
 
 type Props = {
   prefill?: Currency
@@ -38,18 +39,24 @@ export default function Form({ prefill }: Props) {
       ? await editCurrency(prefill._id, data)
       : await createCurrency(data)
     if (res.status) {
-      toast.success(`${prefill ? 'Edit' : 'Create'} Currency Success `)
+      toast.success(
+        `${prefill ? 'Edit' : 'Create'} ${CURRENCY_PAGE_TITLE} Success `,
+      )
       startTransition(() => {
         router.push(`/master/currency`)
         router.refresh()
       })
     } else {
-      toast.error(`${prefill ? 'Edit' : 'Create'} Currency Failed `)
+      toast.error(
+        `${prefill ? 'Edit' : 'Create'} ${CURRENCY_PAGE_TITLE} Failed ${
+          res.message
+        }`,
+      )
     }
   }
 
   return (
-    <LayoutPage name={`${prefill ? 'Edit' : 'Add'} Currency`}>
+    <LayoutPage name={`${prefill ? 'Edit' : 'Add'} ${CURRENCY_PAGE_TITLE}`}>
       <div className="w-full lg:w-1/2 mt-4">
         <FormProvider {...methods}>
           <form

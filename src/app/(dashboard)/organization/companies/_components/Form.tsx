@@ -16,6 +16,7 @@ import { CompanyModel, companyModel } from './Model'
 import SelectCurrency from '@/components/forms/selectAsync/selectCurrency'
 import SelectTimezone from '@/components/forms/selectAsync/selectTimezone'
 import InputFile from '@/components/forms/inputFile'
+import { COMPANY_PAGE_TITLE } from '@/constant/page'
 
 type Props = {
   prefill?: CompanyDetail
@@ -93,18 +94,24 @@ export default function Form({ prefill }: Props) {
       ? await editCompany(prefill._id, formData)
       : await createCompany(formData)
     if (res.status) {
-      toast.success(`${prefill ? 'Edit' : 'Create'} Company Success `)
+      toast.success(
+        `${prefill ? 'Edit' : 'Create'} ${COMPANY_PAGE_TITLE} Success `,
+      )
       startTransition(() => {
         router.push(`/organization/companies`)
         router.refresh()
       })
     } else {
-      toast.error(`${prefill ? 'Edit' : 'Create'} Company Failed `)
+      toast.error(
+        `${prefill ? 'Edit' : 'Create'} ${COMPANY_PAGE_TITLE} Failed ${
+          res.message
+        }`,
+      )
     }
   }
 
   return (
-    <LayoutPage name={`${prefill ? 'Edit' : 'Add'} Company`}>
+    <LayoutPage name={`${prefill ? 'Edit' : 'Add'} ${COMPANY_PAGE_TITLE}`}>
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmit(onSubmit)}

@@ -5,11 +5,21 @@ import {
   HiBriefcase,
 } from 'react-icons/hi'
 import { SidebarItemProps } from './types'
+import {
+  CLIENT_PAGE_TITLE,
+  COMPANY_PAGE_TITLE,
+  COMPANY_TYPE_PAGE_TITLE,
+  CURRENCY_PAGE_TITLE,
+  DASHBOARD_PAGE_TITLE,
+  LOCATION_PAGE_TITLE,
+  PROJECT_PAGE_TITLE,
+  TIMEZONE_PAGE_TITLE,
+} from '@/constant/page'
 
 const menu: SidebarItemProps[] = [
   {
     icon: HiHome,
-    title: 'Dashboard',
+    title: DASHBOARD_PAGE_TITLE,
     link: '/home',
     access: ['superadmin'],
   },
@@ -20,20 +30,16 @@ const menu: SidebarItemProps[] = [
     access: ['superadmin'],
     items: [
       {
-        title: 'Company Type',
+        title: COMPANY_TYPE_PAGE_TITLE,
         link: '/company_type',
       },
       {
-        title: 'Currency',
+        title: CURRENCY_PAGE_TITLE,
         link: '/currency',
       },
       {
-        title: 'TimeZone',
+        title: TIMEZONE_PAGE_TITLE,
         link: '/timezone',
-      },
-      {
-        title: 'Employee',
-        link: '/employee',
       },
     ],
   },
@@ -44,11 +50,11 @@ const menu: SidebarItemProps[] = [
     access: ['superadmin'],
     items: [
       {
-        title: 'Companies',
+        title: COMPANY_PAGE_TITLE,
         link: '/companies',
       },
       {
-        title: 'Locations',
+        title: LOCATION_PAGE_TITLE,
         link: '/locations',
       },
     ],
@@ -60,11 +66,11 @@ const menu: SidebarItemProps[] = [
     access: ['superadmin'],
     items: [
       {
-        title: 'Clients',
+        title: CLIENT_PAGE_TITLE,
         link: '/client',
       },
       {
-        title: 'Projects',
+        title: PROJECT_PAGE_TITLE,
         link: '/projects',
       },
     ],

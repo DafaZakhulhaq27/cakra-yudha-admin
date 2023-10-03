@@ -13,6 +13,7 @@ import { startTransition } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { LocationModel, locationModel } from './Model'
+import { LOCATION_PAGE_TITLE } from '@/constant/page'
 
 type Props = {
   prefill?: LocationDetail
@@ -50,18 +51,24 @@ export default function Form({ prefill }: Props) {
       ? await editLocation(prefill._id, data)
       : await createLocation(data)
     if (res.status) {
-      toast.success(`${prefill ? 'Edit' : 'Create'} Location Success `)
+      toast.success(
+        `${prefill ? 'Edit' : 'Create'} ${LOCATION_PAGE_TITLE} Success `,
+      )
       startTransition(() => {
         router.push(`/organization/locations`)
         router.refresh()
       })
     } else {
-      toast.error(`${prefill ? 'Edit' : 'Create'} Location Failed `)
+      toast.error(
+        `${prefill ? 'Edit' : 'Create'} ${LOCATION_PAGE_TITLE} Failed ${
+          res.message
+        }`,
+      )
     }
   }
 
   return (
-    <LayoutPage name={`${prefill ? 'Edit' : 'Add'} Location`}>
+    <LayoutPage name={`${prefill ? 'Edit' : 'Add'} ${LOCATION_PAGE_TITLE}`}>
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmit(onSubmit)}

@@ -13,6 +13,7 @@ import { startTransition } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { ClientModel, clientModel } from './Model'
+import { CLIENT_PAGE_TITLE } from '@/constant/page'
 
 type Props = {
   prefill?: ClientDetail
@@ -58,18 +59,24 @@ export default function Form({ prefill }: Props) {
       ? await editClient(prefill._id, formValue)
       : await createClient(formValue)
     if (res.status) {
-      toast.success(`${prefill ? 'Edit' : 'Create'} Client Success `)
+      toast.success(
+        `${prefill ? 'Edit' : 'Create'} ${CLIENT_PAGE_TITLE} Success `,
+      )
       startTransition(() => {
         router.push(`/security_master/client`)
         router.refresh()
       })
     } else {
-      toast.error(`${prefill ? 'Edit' : 'Create'} Client Failed `)
+      toast.error(
+        `${prefill ? 'Edit' : 'Create'} ${CLIENT_PAGE_TITLE} Failed ${
+          res.message
+        }`,
+      )
     }
   }
 
   return (
-    <LayoutPage name={`${prefill ? 'Edit' : 'Add'} Client`}>
+    <LayoutPage name={`${prefill ? 'Edit' : 'Add'} ${CLIENT_PAGE_TITLE}`}>
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmit(onSubmit)}
