@@ -60,12 +60,12 @@ const menu: SidebarItemProps[] = [
     access: ['superadmin'],
     items: [
       {
-        title: 'Client',
+        title: 'Clients',
         link: '/client',
       },
       {
-        title: 'Project',
-        link: '/project',
+        title: 'Projects',
+        link: '/projects',
       },
     ],
   },

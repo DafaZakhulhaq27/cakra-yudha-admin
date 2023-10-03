@@ -5,6 +5,7 @@ export type Client = {
   company: string
   client_code: string
   contact_person: string
+  client_name: string
   city: string
   province: string
 }
