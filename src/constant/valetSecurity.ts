@@ -1,5 +1,5 @@
-export type ValetType = 'security' | 'valet'
-export const VALET_TYPE_DROPDOWN = [
+export type ValetSecurityType = 'security' | 'valet'
+export const VALET_SECURITY_TYPE_DROPDOWN = [
   {
     label: 'Security',
     value: 'security',

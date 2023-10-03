@@ -24,6 +24,7 @@ export async function fetcher<T>({
   let url = ''
   let baseURL = ''
   let token = ''
+  const isFormData = options?.body instanceof FormData
 
   if (typeof path === 'string' && path.includes('api')) {
     baseURL = process.env.NEXTAUTH_URL!
@@ -44,11 +45,10 @@ export async function fetcher<T>({
   const headers: HeadersInit = {
     accept: 'application/json',
     'X-API-KEY': API_KEY,
-    // Update Content-Type header for form data
-    'Content-Type':
-      options?.body instanceof FormData
-        ? 'multipart/form-data'
-        : 'application/json',
+  }
+
+  if (!isFormData) {
+    headers['Content-Type'] = 'application/json'
   }
 
   if (token) {
@@ -56,10 +56,9 @@ export async function fetcher<T>({
   }
 
   const isGetMethod = options?.method === 'GET'
-  const body =
-    options?.body instanceof FormData
-      ? options.body
-      : JSON.stringify(options?.body || null) // Handle form data
+  const body = isFormData
+    ? (options.body as FormData)
+    : JSON.stringify(options?.body || null) // Handle form data
   const init: RequestInit = {
     method: options?.method || 'GET',
     headers,

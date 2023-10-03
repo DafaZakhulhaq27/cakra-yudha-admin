@@ -10,7 +10,7 @@ export default async function CompaniesPage({
     limit: String(searchParams?.limit ?? 10),
     page: String(searchParams?.page ?? 1),
     search: String(searchParams?.search ?? ''),
-    type: searchParams?.type ? String(searchParams?.type) : undefined,
+    type: 'security',
   })
 
   return <List res={res} />

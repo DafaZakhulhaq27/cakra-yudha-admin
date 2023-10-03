@@ -1,17 +1,12 @@
 'use client'
 
-import { deleteCompany } from '@/api/companies'
-import { Company, GetCompany } from '@/api/companies/model'
-import { Currency } from '@/api/currency/model'
-import { deleteProject } from '@/api/projects'
-import { GetProject, Project } from '@/api/projects/model'
+import { deleteClient } from '@/api/client'
+import { Client, GetClient } from '@/api/client/model'
 import Button from '@/components/forms/button'
 import LayoutPage from '@/components/layouts/layoutPage'
 import MainPagination from '@/components/list/pagination'
 import Search from '@/components/list/search'
-import SelectFilter from '@/components/list/selectFilter'
 import Table from '@/components/list/table'
-import { VALET_TYPE_DROPDOWN } from '@/constant/valet'
 import useLoading from '@/hooks/loading'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -19,7 +14,7 @@ import toast from 'react-hot-toast'
 import { HiPlus } from 'react-icons/hi'
 
 type Props = {
-  res: GetProject
+  res: GetClient
 }
 
 export default function List({ res }: Props) {
@@ -29,21 +24,16 @@ export default function List({ res }: Props) {
 
   return (
     <LoadingOverlay>
-      <LayoutPage name="Projects">
+      <LayoutPage name="Client">
         <div className="flex flex-col xl:flex-row items-center justify-between space-y-3 xl:space-y-0 xl:space-x-4 p-4">
           <div className="w-full xl:w-1/2 flex gap-5">
             <Search />
-            <SelectFilter
-              data={VALET_TYPE_DROPDOWN}
-              placeHolder="Select All"
-              name="type"
-            />
           </div>
           <div className="w-full xl:w-auto flex flex-col xl:flex-row space-y-2 xl:space-y-0 items-stretch xl:items-center justify-end xl:space-x-3 flex-shrink-0">
-            <Link href="/valet_master/projects/create">
+            <Link href="/security_master/client/create">
               <Button>
                 <HiPlus />
-                Add Project
+                Add Client
               </Button>
             </Link>
           </div>
@@ -52,41 +42,45 @@ export default function List({ res }: Props) {
           <Table
             columns={[
               {
-                column: 'Project Code',
-                name: 'project_code',
+                column: 'Company',
+                name: 'company',
               },
               {
-                column: 'Project Name',
-                name: 'project_name',
+                column: 'Client Code',
+                name: 'client_code',
               },
               {
-                column: 'Client',
-                name: 'client_id',
+                column: 'Contact Person',
+                name: 'contact_person',
               },
               {
-                column: 'Phone Number',
-                name: 'phone_number',
+                column: 'City',
+                name: 'city',
+              },
+              {
+                column: 'Province',
+                name: 'province',
               },
             ]}
             data={data}
-            onDelete={async (item: Project) => {
+            onDelete={async (item: Client) => {
               try {
                 setLoading(true)
-                const { status } = await deleteProject(item._id)
+                const { status } = await deleteClient(item._id)
                 if (status) {
                   router.refresh()
-                  toast.success(`Delete Project Success `)
+                  toast.success(`Delete Client Success `)
                 } else {
-                  toast.error(`Delete Project Failed `)
+                  toast.error(`Delete Client Failed `)
                 }
               } catch (error) {
-                toast.error(`Delete Project Failed `)
+                toast.error(`Delete Client Failed `)
               } finally {
                 setLoading(false)
               }
             }}
-            onEdit={(item: Project) =>
-              router.push(`/valet_master/projects/${item._id}`)
+            onEdit={(item: Client) =>
+              router.push(`/security_master/client/${item._id}`)
             }
           />
         </div>

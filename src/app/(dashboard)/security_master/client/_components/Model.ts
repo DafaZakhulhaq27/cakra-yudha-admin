@@ -16,7 +16,6 @@ export const clientModel = object({
   desc: stringRequired,
   lat: stringRequired,
   long: stringRequired,
-  type: stringRequired,
 })
 
 export type ClientModel = z.infer<typeof clientModel>

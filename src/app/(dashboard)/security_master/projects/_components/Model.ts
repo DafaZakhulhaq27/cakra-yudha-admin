@@ -1,14 +1,10 @@
-import {
-  numberRequired,
-  phoneNumberSchema,
-  stringRequired,
-} from '@/config/form'
+import { phoneNumberSchema, stringRequired } from '@/config/form'
 import { any, object, string, z } from 'zod'
 
 export const projectModel = object({
   id: string().optional(),
-  Project_name: stringRequired,
-  Project_code: stringRequired,
+  project_name: stringRequired,
+  project_code: stringRequired,
   client_id: stringRequired,
   client_id_name: stringRequired,
   phone_number: phoneNumberSchema,
@@ -19,9 +15,8 @@ export const projectModel = object({
   desc: stringRequired,
   lat: stringRequired,
   long: stringRequired,
-  radius: numberRequired,
+  radius: stringRequired,
   attachment: any(),
-  type: stringRequired,
 })
 
 export type ProjectModel = z.infer<typeof projectModel>

@@ -90,8 +90,8 @@ export default function Form({ prefill }: Props) {
     }
 
     const res = prefill
-      ? await editCompany(prefill._id, data)
-      : await createCompany(data)
+      ? await editCompany(prefill._id, formData)
+      : await createCompany(formData)
     if (res.status) {
       toast.success(`${prefill ? 'Edit' : 'Create'} Company Success `)
       startTransition(() => {

@@ -1,5 +1,6 @@
-import { ValetType } from '@/constant/valet'
+import { ValetType } from '@/constant/valetSecurity'
 import { MainResponse, PagedResponse } from '../response'
+import { Client } from '../client/model'
 
 export type Project = {
   _id: string
@@ -21,6 +22,10 @@ export type Project = {
 }
 
 export type ProjectDetail = Project & {
+  client_id: {
+    _id: string
+    name: string
+  }
   phone_number: string
   address: string
   province: string

@@ -55,8 +55,8 @@ const menu: SidebarItemProps[] = [
   },
   {
     icon: HiBriefcase,
-    title: 'Valet Master',
-    link: '/valet_master',
+    title: 'Security Master',
+    link: '/security_master',
     access: ['superadmin'],
     items: [
       {

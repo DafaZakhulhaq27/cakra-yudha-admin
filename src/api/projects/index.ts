@@ -2,9 +2,10 @@ import { fetcher } from '@/utils/fetcher'
 import { filter } from '../filter'
 import { MainResponse } from '../response'
 import { GetDetaiProject, GetProject } from './model'
+import { ValetSecurityType } from '@/constant/valetSecurity'
 
 type ProjectParams = {
-  type?: string
+  type?: ValetSecurityType
 } & filter
 
 export const getProject = async (params: ProjectParams) =>
@@ -13,13 +14,13 @@ export const getProject = async (params: ProjectParams) =>
 export const getProjectDropdown = async (params: ProjectParams) =>
   fetcher<GetProject>({ path: '/api/v1/project', params: params })
 
-export const getDetailProject = async (id: string) =>
+export const getDetailProject = async (id: string, type: ValetSecurityType) =>
   fetcher<GetDetaiProject>({
     path: `/v1/project`,
     params: { _id: id },
   })
 
-export const createProject = async (form: {}) =>
+export const createProject = async (form: FormData) =>
   fetcher<MainResponse>({
     path: '/api/v1/project',
     options: {
@@ -28,7 +29,7 @@ export const createProject = async (form: {}) =>
     },
   })
 
-export const editProject = async (id: string, form: {}) =>
+export const editProject = async (id: string, form: FormData) =>
   fetcher<MainResponse>({
     path: `/api/v1/project`,
     params: {

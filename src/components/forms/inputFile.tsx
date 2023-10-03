@@ -21,7 +21,6 @@ const InputFile = ({ label, ...props }: Props) => {
 
   useEffect(() => {
     if (fileValue) {
-      console.log(fileValue, 'file')
       if (typeof fileValue === 'string') {
         setPreviewImage(fileValue)
       } else {

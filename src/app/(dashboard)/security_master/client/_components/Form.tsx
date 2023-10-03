@@ -4,11 +4,9 @@ import { createClient, editClient } from '@/api/client'
 import { ClientDetail } from '@/api/client/model'
 import Button from '@/components/forms/button'
 import Input from '@/components/forms/input'
-import Select from '@/components/forms/select'
 import SelectCompany from '@/components/forms/selectAsync/selectCompany'
 import Textarea from '@/components/forms/textarea'
 import LayoutPage from '@/components/layouts/layoutPage'
-import { VALET_TYPE_DROPDOWN } from '@/constant/valet'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { startTransition } from 'react'
@@ -40,7 +38,6 @@ export default function Form({ prefill }: Props) {
       desc: prefill?.desc,
       lat: prefill?.lat,
       long: prefill?.long,
-      type: prefill?.type,
     },
   })
 
@@ -51,13 +48,19 @@ export default function Form({ prefill }: Props) {
 
   const onSubmit = async (data: ClientModel, e: any) => {
     e.preventDefault()
+
+    const formValue = {
+      type: 'security',
+      ...data,
+    }
+
     const res = prefill
-      ? await editClient(prefill._id, data)
-      : await createClient(data)
+      ? await editClient(prefill._id, formValue)
+      : await createClient(formValue)
     if (res.status) {
       toast.success(`${prefill ? 'Edit' : 'Create'} Client Success `)
       startTransition(() => {
-        router.push(`/valet_master/client`)
+        router.push(`/security_master/client`)
         router.refresh()
       })
     } else {
@@ -138,12 +141,6 @@ export default function Form({ prefill }: Props) {
               name="long"
               placeholder="Long"
               required
-            />
-            <Select
-              placeHolder={'Select Type'}
-              label={'Type'}
-              name="type"
-              data={VALET_TYPE_DROPDOWN}
             />
           </div>
           <Button

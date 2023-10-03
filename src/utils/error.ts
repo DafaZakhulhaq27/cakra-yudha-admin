@@ -29,8 +29,8 @@ export async function catchBackendError<T>(res: Response) {
       redirect('/logout')
     }
 
-    console.log(`=> ${res.url} code`, message, res.status)
     const error = new BackendError(message, res.status)
+
     return Promise.reject(error)
   }
 

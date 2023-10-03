@@ -1,9 +1,7 @@
-import { CompanyTypeModel } from '@/app/(dashboard)/master/company_type/_components/Model'
 import { fetcher } from '@/utils/fetcher'
 import { filter } from '../filter'
 import { MainResponse } from '../response'
 import { GetCompany, GetDetaiCompany } from './model'
-import { CompanyModel } from '@/app/(dashboard)/organization/companies/_components/Model'
 
 type CompanyParams = filter
 
@@ -19,7 +17,7 @@ export const getDetailCompany = async (id: string) =>
     params: { _id: id },
   })
 
-export const createCompany = async (form: CompanyModel) =>
+export const createCompany = async (form: FormData) =>
   fetcher<MainResponse>({
     path: '/api/v1/company',
     options: {
@@ -28,7 +26,7 @@ export const createCompany = async (form: CompanyModel) =>
     },
   })
 
-export const editCompany = async (id: string, form: CompanyModel) =>
+export const editCompany = async (id: string, form: FormData) =>
   fetcher<MainResponse>({
     path: `/api/v1/company`,
     params: {

@@ -1,4 +1,4 @@
-import { getDetailCompany } from '@/api/companies'
+import { getDetailProject } from '@/api/projects'
 import Form from '../_components/Form'
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
 }
 
 export default async function page({ params }: Props) {
-  const { data } = await getDetailCompany(params.id)
+  const { data } = await getDetailProject(params.id, 'security')
 
   if (!data) {
     return null

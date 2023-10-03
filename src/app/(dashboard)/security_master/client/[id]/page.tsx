@@ -7,7 +7,7 @@ type Props = {
 }
 
 export default async function page({ params }: Props) {
-  const { data } = await getDetailClient(params.id)
+  const { data } = await getDetailClient(params.id, 'security')
 
   if (!data) {
     return null

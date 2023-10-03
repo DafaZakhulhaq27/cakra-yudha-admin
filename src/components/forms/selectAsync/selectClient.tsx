@@ -1,11 +1,14 @@
 import { getClientDropdown } from '@/api/client'
+import { ValetSecurityType } from '@/constant/valetSecurity'
 import { SelectHTMLAttributes } from 'react'
 import { useFormContext } from 'react-hook-form'
 import AsyncSelect from 'react-select/async'
 
-type Props = SelectHTMLAttributes<HTMLSelectElement>
+type Props = {
+  type: ValetSecurityType
+} & SelectHTMLAttributes<HTMLSelectElement>
 
-export default function SelectClient(props: Props) {
+export default function SelectClient({ type, ...props }: Props) {
   const {
     getValues,
     setValue,
@@ -18,6 +21,7 @@ export default function SelectClient(props: Props) {
       search,
       limit: '30',
       page: '1',
+      type: type,
     })
 
     return data.data

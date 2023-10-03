@@ -9,7 +9,6 @@ import Select from '@/components/forms/select'
 import SelectClient from '@/components/forms/selectAsync/selectClient'
 import Textarea from '@/components/forms/textarea'
 import LayoutPage from '@/components/layouts/layoutPage'
-import { VALET_TYPE_DROPDOWN } from '@/constant/valet'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { startTransition } from 'react'
@@ -28,29 +27,64 @@ export default function Form({ prefill }: Props) {
     resolver: zodResolver(projectModel),
     defaultValues: {
       id: prefill?._id,
+      project_name: prefill?.Project_name,
+      project_code: prefill?.Project_code,
+      client_id: prefill?.client_id._id,
+      client_id_name: prefill?.client_id.name,
+      phone_number: prefill?.phone_number,
+      address: prefill?.address,
+      province: prefill?.province,
+      city: prefill?.city,
+      postal_code: prefill?.postal_code,
+      desc: prefill?.desc,
+      lat: prefill?.lat,
+      long: prefill?.long,
+      radius: prefill?.radius,
+      attachment: prefill?.attachment,
     },
   })
 
   const {
     handleSubmit,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting },
   } = methods
 
   const onSubmit = async (data: ProjectModel, e: any) => {
     e.preventDefault()
     let formData = new FormData()
 
+    formData.append('Project_name', data.project_name)
+    formData.append('Project_code', data.project_code)
+    formData.append('client_id', data.client_id)
+    formData.append('phone_number', data.phone_number)
+    formData.append('address', data.address)
+    formData.append('province', data.province)
+    formData.append('city', data.city)
+    formData.append('postal_code', data.postal_code)
+    formData.append('desc', data.desc)
+    formData.append('lat', data.lat)
+    formData.append('long', data.long)
+    formData.append('radius', data.radius)
+    if (data.attachment.length) {
+      formData.append('attachment', data.attachment[0])
+    }
+
+    formData.append('type', 'security')
+
     const res = prefill
-      ? await editProject(prefill._id, data)
-      : await createProject(data)
+      ? await editProject(prefill._id, formData)
+      : await createProject(formData)
+
     if (res.status) {
       toast.success(`${prefill ? 'Edit' : 'Create'} Project Success `)
       startTransition(() => {
-        router.push(`/valet_master/projects`)
+        router.push(`/security_master/projects`)
         router.refresh()
       })
     } else {
-      toast.error(`${prefill ? 'Edit' : 'Create'} Project Failed `)
+      toast.error(
+        `${prefill ? 'Edit' : 'Create'} Project Failed ${res.message} `,
+      )
     }
   }
 
@@ -75,7 +109,7 @@ export default function Form({ prefill }: Props) {
               placeholder="Project Code"
               required
             />
-            <SelectClient name="client_id" />
+            <SelectClient name="client_id" type="security" />
             <Input
               type="number"
               label="Phone Number"
@@ -130,12 +164,6 @@ export default function Form({ prefill }: Props) {
               name="radius"
               placeholder="Radius"
               required
-            />
-            <Select
-              placeHolder={'Select Type'}
-              label={'Type'}
-              name="type"
-              data={VALET_TYPE_DROPDOWN}
             />
           </div>
           <Button
