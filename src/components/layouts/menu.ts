@@ -11,6 +11,7 @@ import {
   COMPANY_TYPE_PAGE_TITLE,
   CURRENCY_PAGE_TITLE,
   DASHBOARD_PAGE_TITLE,
+  GROUP_PAGE_TITLE,
   LOCATION_PAGE_TITLE,
   PROJECT_PAGE_TITLE,
   TIMEZONE_PAGE_TITLE,
@@ -72,6 +73,10 @@ const menu: SidebarItemProps[] = [
       {
         title: PROJECT_PAGE_TITLE,
         link: '/projects',
+      },
+      {
+        title: GROUP_PAGE_TITLE,
+        link: '/groups',
       },
     ],
   },

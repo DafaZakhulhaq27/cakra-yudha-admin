@@ -1,4 +1,8 @@
-import { phoneNumberSchema, stringRequired } from '@/config/form'
+import {
+  numberRequired,
+  phoneNumberSchema,
+  stringRequired,
+} from '@/config/form'
 import { any, object, string, z } from 'zod'
 
 export const projectModel = object({
@@ -15,7 +19,7 @@ export const projectModel = object({
   desc: stringRequired,
   lat: stringRequired,
   long: stringRequired,
-  radius: stringRequired,
+  radius: numberRequired,
   attachment: any(),
 })
 

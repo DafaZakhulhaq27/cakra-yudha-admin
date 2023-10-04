@@ -4,6 +4,7 @@ import { useFormContext } from 'react-hook-form'
 type Props = {
   placeHolder: string
   label: string
+  name: string
   data: {
     label: string
     value: string

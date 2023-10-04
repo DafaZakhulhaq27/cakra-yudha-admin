@@ -12,3 +12,4 @@ export const LOCATION_PAGE_TITLE = 'Location'
 // Security & Valet
 export const CLIENT_PAGE_TITLE = 'Client'
 export const PROJECT_PAGE_TITLE = 'Project'
+export const GROUP_PAGE_TITLE = 'Group'

@@ -74,9 +74,7 @@ export default function Table({
               </td>
               {columns.map((column, colIndex) => (
                 <td className="px-4 py-3" key={`${column.column}-${index}`}>
-                  {column.render
-                    ? column.render(item[column.name])
-                    : item[column.name]}
+                  {column.render ? column.render(item) : item[column.name]}
                 </td>
               ))}
               {hasAction && (

@@ -1,8 +1,8 @@
-import { Schema, any, number, string } from 'zod'
+import { Schema, any, string, z } from 'zod'
 
 export const NonEmptyErrorMsg = 'Cant be Empty'
 export const stringRequired = string().nonempty(NonEmptyErrorMsg)
-export const numberRequired = number().min(0)
+export const numberRequired = z.coerce.number().min(0)
 
 const phoneNumberRegex = /^0\d{9,12}$/
 

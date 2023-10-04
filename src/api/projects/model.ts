@@ -3,8 +3,8 @@ import { MainResponse, PagedResponse } from '../response'
 
 export type Project = {
   _id: string
-  Project_name: string
-  Project_code: string
+  project_name: string
+  project_code: string
   client_id: string
   client_id_name: string
   phone_number: string
@@ -15,7 +15,7 @@ export type Project = {
   desc: string
   lat: string
   long: string
-  radius: string
+  radius: number
   attachment: string
   type: ValetSecurityType
 }
@@ -25,6 +25,8 @@ export type ProjectDetail = Project & {
     _id: string
     name: string
   }
+  Project_name: string
+  Project_code: string
   phone_number: string
   address: string
   province: string
@@ -33,7 +35,7 @@ export type ProjectDetail = Project & {
   desc: string
   lat: string
   long: string
-  radius: string
+  radius: number
   attachment: string
   type: ValetSecurityType
 }
