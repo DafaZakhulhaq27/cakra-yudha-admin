@@ -2,13 +2,13 @@
 
 import { CompanyType, GetCompanyType } from '@/api/companyType/model'
 import { Currency } from '@/api/currency/model'
-import { deleteQualification } from '@/api/qualification'
+import { deletePositionLevel } from '@/api/positionLevel'
 import Button from '@/components/forms/button'
 import LayoutPage from '@/components/layouts/layoutPage'
 import MainPagination from '@/components/list/pagination'
 import Search from '@/components/list/search'
 import Table from '@/components/list/table'
-import { QUALIFICATION_PAGE_TITLE } from '@/constant/page'
+import { POSITION_LEVEL_PAGE_TITLE } from '@/constant/page'
 import useLoading from '@/hooks/loading'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -26,16 +26,16 @@ export default function List({ res }: Props) {
 
   return (
     <LoadingOverlay>
-      <LayoutPage name={QUALIFICATION_PAGE_TITLE}>
+      <LayoutPage name={POSITION_LEVEL_PAGE_TITLE}>
         <div className="flex flex-col xl:flex-row items-center justify-between space-y-3 xl:space-y-0 xl:space-x-4 p-4">
           <div className="w-full xl:w-1/2 flex gap-5">
             <Search />
           </div>
           <div className="w-full xl:w-auto flex flex-col xl:flex-row space-y-2 xl:space-y-0 items-stretch xl:items-center justify-end xl:space-x-3 flex-shrink-0">
-            <Link href="/master/qualification/create">
+            <Link href="/master/position_level/create">
               <Button>
                 <HiPlus />
-                Add {QUALIFICATION_PAGE_TITLE}
+                Add {POSITION_LEVEL_PAGE_TITLE}
               </Button>
             </Link>
           </div>
@@ -52,21 +52,21 @@ export default function List({ res }: Props) {
             onDelete={async (item: CompanyType) => {
               try {
                 setLoading(true)
-                const { status } = await deleteQualification(item._id)
+                const { status } = await deletePositionLevel(item._id)
                 if (status) {
                   router.refresh()
-                  toast.success(`Delete ${QUALIFICATION_PAGE_TITLE} Success `)
+                  toast.success(`Delete ${POSITION_LEVEL_PAGE_TITLE} Success `)
                 } else {
-                  toast.error(`Delete ${QUALIFICATION_PAGE_TITLE} Failed `)
+                  toast.error(`Delete ${POSITION_LEVEL_PAGE_TITLE} Failed `)
                 }
               } catch (error) {
-                toast.error(`Delete ${QUALIFICATION_PAGE_TITLE} Failed `)
+                toast.error(`Delete ${POSITION_LEVEL_PAGE_TITLE} Failed `)
               } finally {
                 setLoading(false)
               }
             }}
             onEdit={(item: Currency) =>
-              router.push(`/master/qualification/${item._id}`)
+              router.push(`/master/position_level/${item._id}`)
             }
           />
         </div>
