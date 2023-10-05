@@ -1,15 +1,11 @@
-import { getClientDropdown } from '@/api/client'
-import { getProjectDropdown } from '@/api/projects'
-import { ValetSecurityType } from '@/constant/valetSecurity'
+import { getLocationDropdown } from '@/api/locations'
 import { SelectHTMLAttributes } from 'react'
 import { useFormContext } from 'react-hook-form'
 import AsyncSelect from 'react-select/async'
 
-type Props = {
-  type?: ValetSecurityType
-} & SelectHTMLAttributes<HTMLSelectElement>
+type Props = SelectHTMLAttributes<HTMLSelectElement>
 
-export default function SelectProject({ type, ...props }: Props) {
+export default function SelectLocation(props: Props) {
   const {
     getValues,
     setValue,
@@ -18,11 +14,10 @@ export default function SelectProject({ type, ...props }: Props) {
   const errorMessage = errors[props.name ?? '']?.message
 
   const getData = async (search: string) => {
-    const data = await getProjectDropdown({
+    const data = await getLocationDropdown({
       search,
       limit: '30',
       page: '1',
-      type: type,
     })
 
     return data.data
@@ -39,26 +34,26 @@ export default function SelectProject({ type, ...props }: Props) {
           errorMessage ? 'text-red-600' : 'text-gray-900'
         }`}
       >
-        Project {props.required && <span className="text-red-500">*</span>}
+        Location {props.required && <span className="text-red-500">*</span>}
       </label>
       <AsyncSelect
         instanceId={props.name}
-        placeholder="Select Project"
+        placeholder="Select Location"
         cacheOptions
         getOptionValue={_ => _._id}
-        getOptionLabel={_ => `${_.project_code}`}
+        getOptionLabel={_ => _.location_name}
         loadOptions={getData}
         value={
           id
             ? {
                 _id: id,
-                project_code: name,
+                location_name: name,
               }
             : undefined
         }
         onChange={v => {
           setValue(props.name ?? '', v?._id)
-          setValue(`${props.name}_name` ?? '', v?.project_code)
+          setValue(`${props.name}_name` ?? '', v?.location_name)
         }}
         defaultOptions
       />

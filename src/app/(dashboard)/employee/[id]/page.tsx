@@ -1,4 +1,4 @@
-import { getDetailGroup } from '@/api/group'
+import { getDetailEmployee } from '@/api/employee'
 import Form from '../_components/Form'
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
 }
 
 export default async function page({ params }: Props) {
-  const { data } = await getDetailGroup(params.id, 'security')
+  const { data } = await getDetailEmployee(params.id)
 
   if (!data) {
     return null

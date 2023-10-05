@@ -1,84 +1,96 @@
 'use client'
 
-import { createGroup, editGroup } from '@/api/group'
-import { GroupDetail } from '@/api/group/model'
+import { createEmployee, editEmployee } from '@/api/employee'
+import { EmployeeDetail } from '@/api/employee/model'
 import Button from '@/components/forms/button'
 import Input from '@/components/forms/input'
-import SelectCompany from '@/components/forms/selectAsync/selectCompany'
+import Select from '@/components/forms/select'
+import SelectProject from '@/components/forms/selectAsync/selectProject'
 import Textarea from '@/components/forms/textarea'
 import LayoutPage from '@/components/layouts/layoutPage'
-import { GROUP_PAGE_TITLE } from '@/constant/page'
+import { EMPLOYEE_PAGE_TITLE } from '@/constant/page'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { startTransition } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { GroupModel, groupModel } from './Model'
-import SelectProject from '@/components/forms/selectAsync/selectProject'
-import Select from '@/components/forms/select'
+import { EmployeeModel, employeeModel } from './Model'
+import SelectCompany from '@/components/forms/selectAsync/selectCompany'
+import SelectQualification from '@/components/forms/selectAsync/selectQualification'
+import SelectPositionLevel from '@/components/forms/selectAsync/selectPositionLevel'
+import SelectLocation from '@/components/forms/selectAsync/selectLocation'
+import SelectGroup from '@/components/forms/selectAsync/selectGroup'
 
 type Props = {
-  prefill?: GroupDetail
+  prefill?: EmployeeDetail
 }
 
 export default function Form({ prefill }: Props) {
   const router = useRouter()
-  const methods = useForm<GroupModel>({
+  const methods = useForm<EmployeeModel>({
     mode: 'onTouched',
-    resolver: zodResolver(groupModel),
+    resolver: zodResolver(employeeModel),
     defaultValues: {
       id: prefill?._id,
+      first_name: prefill?.first_name,
+      last_name: prefill?.last_name,
+      employe_id: prefill?.employe_id,
+      join_date: prefill?.join_date,
+      nik: prefill?.nik,
+      npwp: prefill?.npwp,
+      gender: prefill?.gender,
+      company_id: prefill?.company_id._id,
+      company_id_name: prefill?.company_id.name,
+      location_id: prefill?.location_id._id,
+      location_id_name: prefill?.location_id.name,
       project_id: prefill?.project_id._id,
       project_id_name: prefill?.project_id.name,
-      geo_status: prefill?.geo_status ?? 'Active',
-      group_code: prefill?.group_code,
-      group_name: prefill?.group_name,
-      contact_person: prefill?.contact_person,
-      total_personil: prefill?.total_personil,
-      desc: prefill?.desc,
-      shift_validate_status: prefill?.shift_validate_status,
-      lat: prefill?.lat,
-      long: prefill?.long,
-      radius: prefill?.radius,
-      waktu_kerja: prefill?.waktu_kerja,
+      group_id: prefill?.group_id._id,
+      group_id_name: prefill?.group_id.name,
+      qualification_id: prefill?.qualification_id._id,
+      qualification_id_name: prefill?.qualification_id.name,
+      position_level_id: prefill?.position_level_id._id,
+      position_level_id_name: prefill?.position_level_id.name,
+      role: prefill?.role,
+      date_of_birth: prefill?.date_of_birth,
+      report_to_id: '',
+      leave_category_id: prefill?.leave_category_id,
+      address: prefill?.address,
     },
   })
 
   const {
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = methods
 
-  const onSubmit = async (data: GroupModel, e: any) => {
+  const onSubmit = async (data: EmployeeModel, e: any) => {
     e.preventDefault()
 
-    const formValue = {
-      type: 'security',
-      ...data,
-    }
-
     const res = prefill
-      ? await editGroup(prefill._id, formValue)
-      : await createGroup(formValue)
+      ? await editEmployee(prefill._id, data)
+      : await createEmployee(data)
     if (res.status) {
       toast.success(
-        `${prefill ? 'Edit' : 'Create'} ${GROUP_PAGE_TITLE} Success `,
+        `${prefill ? 'Edit' : 'Create'} ${EMPLOYEE_PAGE_TITLE} Success `,
       )
       startTransition(() => {
-        router.push(`/security_master/groups`)
+        router.push(`/employee`)
         router.refresh()
       })
     } else {
       toast.error(
-        `${prefill ? 'Edit' : 'Create'} ${GROUP_PAGE_TITLE} Failed ${
+        `${prefill ? 'Edit' : 'Create'} ${EMPLOYEE_PAGE_TITLE} Failed ${
           res.message
         }`,
       )
     }
   }
 
+  console.log(errors, 'errors')
+
   return (
-    <LayoutPage name={`${prefill ? 'Edit' : 'Add'} ${GROUP_PAGE_TITLE}`}>
+    <LayoutPage name={`${prefill ? 'Edit' : 'Add'} ${EMPLOYEE_PAGE_TITLE}`}>
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -86,95 +98,152 @@ export default function Form({ prefill }: Props) {
           noValidate
         >
           <div className="grid grid-flow-row grid-cols-1 lg:grid-cols-2 gap-5">
-            <SelectProject name="project_id" type={'security'} />
-            <Select
-              placeHolder={'Select Geo Status'}
-              label={'Geo Status'}
-              name="geo_status"
-              data={[
-                {
-                  label: 'Active',
-                  value: 'Active',
-                },
-                {
-                  label: 'Non Active',
-                  value: 'Non Active',
-                },
-              ]}
-            />
             <Input
-              label="Group Code"
-              name="group_code"
-              placeholder="Group Code"
+              label="Username"
+              name="username"
+              placeholder="Username"
+              required
+            />
+            <Input label="Email" name="email" placeholder="Email" required />
+            <Input
+              label="First Name"
+              name="first_name"
+              placeholder="First Name"
               required
             />
             <Input
-              label="Group Name"
-              name="group_name"
-              placeholder="Group Name"
+              label="Last Name"
+              name="last_name"
+              placeholder="Last Name"
+              required
+            />
+            <Input
+              label="Employee Id"
+              name="employe_id"
+              placeholder="Employee Id"
+              required
+            />
+            <Input
+              type="date"
+              label="Join Date"
+              name="join_date"
+              placeholder="Join Date"
               required
             />
             <Input
               type="number"
-              label="Contact Person"
-              name="contact_person"
-              placeholder="Contact Person"
+              label="Nik"
+              name="nik"
+              placeholder="Nik"
               required
             />
+            <Input label="NPWP" name="npwp" placeholder="NPWP" required />
             <Input
-              type="number"
-              label="Total Personil"
-              name="total_personil"
-              placeholder="Total Personil"
+              type="password"
+              label="Password"
+              name="password"
+              placeholder="Password"
               required
             />{' '}
-            <Textarea
-              label="Description"
-              name="desc"
-              placeholder="Description"
+            <Input
+              type="password"
+              label="Password Confirmation"
+              name="password_confirmation"
+              placeholder="Password Confirmation"
               required
             />
             <Select
-              placeHolder={'Select Shift Validate Status'}
-              label={'Shift Validate Status'}
-              name="shift_validate_status"
+              placeHolder={'Select Gender'}
+              label={'Gender'}
+              name="gender"
               data={[
                 {
-                  label: 'Active',
-                  value: 'Active',
+                  label: 'Male',
+                  value: 'Male',
                 },
                 {
-                  label: 'Non Active',
-                  value: 'Non Active',
+                  label: 'Female',
+                  value: 'Female',
                 },
               ]}
             />
+            <SelectCompany name="company_id" />{' '}
+            <SelectLocation name="location_id" />{' '}
+            <SelectProject name="project_id" /> <SelectGroup name="group_id" />{' '}
             <Input
-              type="number"
-              label="Lat"
-              name="lat"
-              placeholder="Lat"
+              type="date"
+              label="Date of Birth"
+              name="date_of_birth"
+              placeholder="Date of Birth"
               required
             />
             <Input
               type="number"
-              label="Long"
-              name="long"
-              placeholder="Long"
+              label="Contact Number"
+              name="contact_number"
+              placeholder="Contact Number"
               required
             />
-            <Input
-              type="number"
-              label="Radius"
-              name="radius"
-              placeholder="Radius"
-              required
+            <SelectQualification name="qualification_id" />
+            <SelectPositionLevel name="position_level_id" />
+            <Select
+              placeHolder={'Select Role'}
+              label={'Role'}
+              name="role"
+              data={[
+                {
+                  label: 'Super Admin',
+                  value: 'Super Admin',
+                },
+                {
+                  label: 'Employee',
+                  value: 'Employee',
+                },
+                {
+                  label: 'Security',
+                  value: 'Security',
+                },
+                {
+                  label: 'Valet',
+                  value: 'Valet',
+                },
+                {
+                  label: 'Euser',
+                  value: 'Euser',
+                },
+                {
+                  label: 'Direktur',
+                  value: 'Direktur',
+                },
+                {
+                  label: 'HRD',
+                  value: 'HRD',
+                },
+              ]}
             />
-            <Input
-              type="time"
-              label="Time Working"
-              name="waktu_kerja"
-              placeholder="Time Working"
+            <Select
+              placeHolder={'Leave Category'}
+              label={'Sakit'}
+              name="leave_category_id"
+              data={[
+                {
+                  label: 'Menikah',
+                  value: 'Menikah',
+                },
+                {
+                  label: 'Sakit',
+                  value: 'Sakit',
+                },
+                {
+                  label: 'Meninggal Dunia',
+                  value: 'Meninggal Dunia',
+                },
+              ]}
+            />
+            <Textarea
+              label="Address"
+              name="address"
+              placeholder="Address"
               required
             />
           </div>

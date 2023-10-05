@@ -12,7 +12,10 @@ export const getProject = async (params: ProjectParams) =>
   fetcher<GetProject>({ path: '/v1/project', params: params })
 
 export const getProjectDropdown = async (params: ProjectParams) =>
-  fetcher<GetProject>({ path: '/api/v1/project', params: params })
+  fetcher<GetProject>({
+    path: '/api/v1/project',
+    params: { ...params, type: params.type ?? '' },
+  })
 
 export const getDetailProject = async (id: string, type: ValetSecurityType) =>
   fetcher<GetDetaiProject>({

@@ -1,4 +1,4 @@
-import { getClientDropdown } from '@/api/client'
+import { getGroupDropdown } from '@/api/group'
 import { getProjectDropdown } from '@/api/projects'
 import { ValetSecurityType } from '@/constant/valetSecurity'
 import { SelectHTMLAttributes } from 'react'
@@ -9,7 +9,7 @@ type Props = {
   type?: ValetSecurityType
 } & SelectHTMLAttributes<HTMLSelectElement>
 
-export default function SelectProject({ type, ...props }: Props) {
+export default function SelectGroup({ type, ...props }: Props) {
   const {
     getValues,
     setValue,
@@ -18,7 +18,7 @@ export default function SelectProject({ type, ...props }: Props) {
   const errorMessage = errors[props.name ?? '']?.message
 
   const getData = async (search: string) => {
-    const data = await getProjectDropdown({
+    const data = await getGroupDropdown({
       search,
       limit: '30',
       page: '1',
@@ -39,26 +39,26 @@ export default function SelectProject({ type, ...props }: Props) {
           errorMessage ? 'text-red-600' : 'text-gray-900'
         }`}
       >
-        Project {props.required && <span className="text-red-500">*</span>}
+        Group {props.required && <span className="text-red-500">*</span>}
       </label>
       <AsyncSelect
         instanceId={props.name}
-        placeholder="Select Project"
+        placeholder="Select Group"
         cacheOptions
         getOptionValue={_ => _._id}
-        getOptionLabel={_ => `${_.project_code}`}
+        getOptionLabel={_ => `${_.group_name}`}
         loadOptions={getData}
         value={
           id
             ? {
                 _id: id,
-                project_code: name,
+                group_name: name,
               }
             : undefined
         }
         onChange={v => {
           setValue(props.name ?? '', v?._id)
-          setValue(`${props.name}_name` ?? '', v?.project_code)
+          setValue(`${props.name}_name` ?? '', v?.group_name)
         }}
         defaultOptions
       />

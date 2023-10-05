@@ -1,15 +1,13 @@
-import { getClientDropdown } from '@/api/client'
-import { getProjectDropdown } from '@/api/projects'
-import { ValetSecurityType } from '@/constant/valetSecurity'
+import { getCompanyTypeDropdown } from '@/api/companyType'
+import { getPositionLevelDropdown } from '@/api/positionLevel'
+import { getQualificationDropdown } from '@/api/qualification'
 import { SelectHTMLAttributes } from 'react'
 import { useFormContext } from 'react-hook-form'
 import AsyncSelect from 'react-select/async'
 
-type Props = {
-  type?: ValetSecurityType
-} & SelectHTMLAttributes<HTMLSelectElement>
+type Props = SelectHTMLAttributes<HTMLSelectElement>
 
-export default function SelectProject({ type, ...props }: Props) {
+export default function SelectPositionLevel(props: Props) {
   const {
     getValues,
     setValue,
@@ -17,12 +15,11 @@ export default function SelectProject({ type, ...props }: Props) {
   } = useFormContext()
   const errorMessage = errors[props.name ?? '']?.message
 
-  const getData = async (search: string) => {
-    const data = await getProjectDropdown({
+  const options = async (search: string) => {
+    const data = await getPositionLevelDropdown({
       search,
       limit: '30',
       page: '1',
-      type: type,
     })
 
     return data.data
@@ -39,26 +36,27 @@ export default function SelectProject({ type, ...props }: Props) {
           errorMessage ? 'text-red-600' : 'text-gray-900'
         }`}
       >
-        Project {props.required && <span className="text-red-500">*</span>}
+        Position Level{' '}
+        {props.required && <span className="text-red-500">*</span>}
       </label>
       <AsyncSelect
         instanceId={props.name}
-        placeholder="Select Project"
+        placeholder="Select Position Level"
         cacheOptions
         getOptionValue={_ => _._id}
-        getOptionLabel={_ => `${_.project_code}`}
-        loadOptions={getData}
+        getOptionLabel={_ => _.name}
+        loadOptions={options}
         value={
           id
             ? {
-                _id: id,
-                project_code: name,
+                _id: name,
+                name: name,
               }
             : undefined
         }
         onChange={v => {
           setValue(props.name ?? '', v?._id)
-          setValue(`${props.name}_name` ?? '', v?.project_code)
+          setValue(`${props.name}_name` ?? '', v?.name)
         }}
         defaultOptions
       />

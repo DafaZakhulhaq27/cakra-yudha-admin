@@ -14,7 +14,10 @@ export const getGroup = async (params: GroupParams) =>
   fetcher<GetGroup>({ path: '/v1/group', params: params })
 
 export const getGroupDropdown = async (params: GroupParams) =>
-  fetcher<GetGroup>({ path: '/api/v1/group', params: params })
+  fetcher<GetGroup>({
+    path: '/api/v1/group',
+    params: { ...params, type: params.type ?? '' },
+  })
 
 export const getDetailGroup = async (id: string, type: ValetSecurityType) =>
   fetcher<GetDetaiGroup>({
