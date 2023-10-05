@@ -1,9 +1,13 @@
 export const DASHBOARD_PAGE_TITLE = 'Dashboard'
 
+export const EMPLOYEE_PAGE_TITLE = 'Employee'
+
 // Master
 export const COMPANY_TYPE_PAGE_TITLE = 'Company Type'
 export const CURRENCY_PAGE_TITLE = 'Currency'
 export const TIMEZONE_PAGE_TITLE = 'TimeZone'
+export const QUALIFICATION_PAGE_TITLE = 'Qualification'
+export const POSITION_LEVEL_PAGE_TITLE = 'Position Level'
 
 // Organization
 export const COMPANY_PAGE_TITLE = 'Company'

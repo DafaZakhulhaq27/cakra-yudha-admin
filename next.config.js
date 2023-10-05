@@ -12,11 +12,19 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'robohash.org',
+      },
+      {
+        protocol: 'https',
         hostname: 'cdn-icons-png.flaticon.com',
       },
       {
         protocol: 'https',
         hostname: 'firebasestorage.googleapis.com',
+      },
+      {
+        protocol: 'http',
+        hostname: '203.175.11.163',
       },
     ],
   },

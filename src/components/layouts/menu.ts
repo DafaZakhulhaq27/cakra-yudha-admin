@@ -3,6 +3,7 @@ import {
   HiHome,
   HiOfficeBuilding,
   HiBriefcase,
+  HiUserGroup,
 } from 'react-icons/hi'
 import { SidebarItemProps } from './types'
 import {
@@ -13,7 +14,9 @@ import {
   DASHBOARD_PAGE_TITLE,
   GROUP_PAGE_TITLE,
   LOCATION_PAGE_TITLE,
+  POSITION_LEVEL_PAGE_TITLE,
   PROJECT_PAGE_TITLE,
+  QUALIFICATION_PAGE_TITLE,
   TIMEZONE_PAGE_TITLE,
 } from '@/constant/page'
 
@@ -22,6 +25,12 @@ const menu: SidebarItemProps[] = [
     icon: HiHome,
     title: DASHBOARD_PAGE_TITLE,
     link: '/home',
+    access: ['superadmin'],
+  },
+  {
+    icon: HiUserGroup,
+    title: 'Employee',
+    link: '/employee',
     access: ['superadmin'],
   },
   {
@@ -41,6 +50,14 @@ const menu: SidebarItemProps[] = [
       {
         title: TIMEZONE_PAGE_TITLE,
         link: '/timezone',
+      },
+      {
+        title: QUALIFICATION_PAGE_TITLE,
+        link: '/qualification',
+      },
+      {
+        title: POSITION_LEVEL_PAGE_TITLE,
+        link: '/position_level',
       },
     ],
   },

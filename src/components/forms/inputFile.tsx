@@ -21,14 +21,14 @@ const InputFile = ({ label, ...props }: Props) => {
 
   useEffect(() => {
     if (fileValue) {
-      if (typeof fileValue === 'string') {
-        setPreviewImage(fileValue)
-      } else {
+      if (typeof fileValue !== 'string') {
         let reader = new FileReader()
         reader.readAsDataURL(fileValue[0])
         reader.onload = e => {
           setPreviewImage((e.target!.result as unknown as string) ?? '')
         }
+      } else {
+        setPreviewImage(fileValue)
       }
     }
   }, [fileValue])
