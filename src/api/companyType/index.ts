@@ -1,9 +1,8 @@
-import { TimezoneModel } from '@/app/(dashboard)/master/timezone/_components/Model'
+import { CompanyTypeModel } from '@/app/(dashboard)/master/company_type/_components/Model'
 import { fetcher } from '@/utils/fetcher'
 import { filter } from '../filter'
 import { MainResponse } from '../response'
 import { GetCompanyType, GetDetaiCompanyType } from './model'
-import { CompanyTypeModel } from '@/app/(dashboard)/master/company_type/_components/Model'
 
 type CompanyTypeParams = filter
 

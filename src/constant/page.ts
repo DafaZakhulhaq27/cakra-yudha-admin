@@ -1,6 +1,7 @@
 export const DASHBOARD_PAGE_TITLE = 'Dashboard'
 
 export const EMPLOYEE_PAGE_TITLE = 'Employee'
+export const ATTENDENCE_PAGE_TITLE = 'Attendence'
 
 // Master
 export const COMPANY_TYPE_PAGE_TITLE = 'Company Type'

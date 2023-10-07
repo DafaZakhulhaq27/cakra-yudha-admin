@@ -4,9 +4,11 @@ import {
   HiOfficeBuilding,
   HiBriefcase,
   HiUserGroup,
+  HiClock,
 } from 'react-icons/hi'
 import { SidebarItemProps } from './types'
 import {
+  ATTENDENCE_PAGE_TITLE,
   CLIENT_PAGE_TITLE,
   COMPANY_PAGE_TITLE,
   COMPANY_TYPE_PAGE_TITLE,
@@ -34,30 +36,14 @@ const menu: SidebarItemProps[] = [
     access: ['superadmin'],
   },
   {
-    icon: HiDatabase,
-    title: 'Master',
-    link: '/master',
+    icon: HiClock,
+    title: 'Timesheet',
+    link: '/timesheet',
     access: ['superadmin'],
     items: [
       {
-        title: COMPANY_TYPE_PAGE_TITLE,
-        link: '/company_type',
-      },
-      {
-        title: CURRENCY_PAGE_TITLE,
-        link: '/currency',
-      },
-      {
-        title: TIMEZONE_PAGE_TITLE,
-        link: '/timezone',
-      },
-      {
-        title: QUALIFICATION_PAGE_TITLE,
-        link: '/qualification',
-      },
-      {
-        title: POSITION_LEVEL_PAGE_TITLE,
-        link: '/position_level',
+        title: ATTENDENCE_PAGE_TITLE,
+        link: '/attendence',
       },
     ],
   },
@@ -94,6 +80,34 @@ const menu: SidebarItemProps[] = [
       {
         title: GROUP_PAGE_TITLE,
         link: '/groups',
+      },
+    ],
+  },
+  {
+    icon: HiDatabase,
+    title: 'Master',
+    link: '/master',
+    access: ['superadmin'],
+    items: [
+      {
+        title: COMPANY_TYPE_PAGE_TITLE,
+        link: '/company_type',
+      },
+      {
+        title: CURRENCY_PAGE_TITLE,
+        link: '/currency',
+      },
+      {
+        title: TIMEZONE_PAGE_TITLE,
+        link: '/timezone',
+      },
+      {
+        title: QUALIFICATION_PAGE_TITLE,
+        link: '/qualification',
+      },
+      {
+        title: POSITION_LEVEL_PAGE_TITLE,
+        link: '/position_level',
       },
     ],
   },
