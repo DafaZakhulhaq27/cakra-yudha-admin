@@ -49,6 +49,7 @@ export default function Form({ prefill }: Props) {
       currency_name: prefill?.currency.name,
       timezone: prefill?.timezone._id,
       timezone_name: prefill?.timezone.name,
+      company_logo: prefill?.company_logo,
     },
   })
 
@@ -82,12 +83,9 @@ export default function Form({ prefill }: Props) {
     formData.append('email', data.email)
     formData.append('website', data.website)
     formData.append('timezone', data.timezone)
-    if (data.company_logo.length) {
-      formData.append(
-        'company_logo',
-        data.company_logo[0],
-        data.company_logo[0].name,
-      )
+    formData.append('currency', data.currency)
+    if (typeof data.company_logo !== 'string' && data.company_logo.length) {
+      formData.append('company_logo', data.company_logo[0])
     }
 
     const res = prefill

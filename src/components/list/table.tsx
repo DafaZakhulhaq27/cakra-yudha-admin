@@ -23,6 +23,7 @@ type Data =
 type TableProps = {
   columns: Column[]
   data: Data[]
+  isNotMaster?: boolean
   onDelete?: ((v: any, index: number) => void) | null
   onEdit?: ((v: any, index: number) => void) | null
   onView?: ((v: any, index: number) => void) | null
@@ -34,6 +35,7 @@ export default function Table({
   onDelete,
   onEdit,
   onView,
+  isNotMaster = false,
 }: TableProps) {
   const hasAction = !!onDelete || !!onEdit || !!onView
   const [openModal, setOpenModal] = useState<boolean>(false)
@@ -100,7 +102,7 @@ export default function Table({
                         />
                       </Tooltip>
                     )}
-                    {!!onDelete && (
+                    {isNotMaster && !!onDelete && (
                       <Tooltip content="Delete">
                         <HiTrash
                           color="red"

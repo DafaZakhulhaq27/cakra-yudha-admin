@@ -32,6 +32,8 @@ export default function Form({ prefill }: Props) {
     resolver: zodResolver(employeeModel),
     defaultValues: {
       id: prefill?._id,
+      username: prefill?.username,
+      email: prefill?.email,
       first_name: prefill?.first_name,
       last_name: prefill?.last_name,
       employe_id: prefill?.employe_id,
@@ -54,6 +56,7 @@ export default function Form({ prefill }: Props) {
       role: prefill?.role,
       date_of_birth: prefill?.date_of_birth,
       report_to_id: '',
+      contact_number: prefill?.contact_number,
       leave_category_id: prefill?.leave_category_id,
       address: prefill?.address,
     },

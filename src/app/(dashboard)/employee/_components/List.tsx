@@ -42,6 +42,7 @@ export default function List({ res }: Props) {
         </div>
         <div className="overflow-x-auto">
           <Table
+            isNotMaster
             columns={[
               {
                 column: 'First Name',

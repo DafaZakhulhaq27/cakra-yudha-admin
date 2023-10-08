@@ -44,8 +44,8 @@ export default function List({ res }: Props) {
           <Table
             columns={[
               {
-                column: 'Username',
-                name: 'username',
+                column: 'Company Name',
+                name: 'company_name',
               },
               {
                 column: 'Company Type',
@@ -70,6 +70,10 @@ export default function List({ res }: Props) {
               {
                 column: 'Country',
                 name: 'country',
+              },
+              {
+                column: 'Username',
+                name: 'username',
               },
               {
                 column: 'Currency',

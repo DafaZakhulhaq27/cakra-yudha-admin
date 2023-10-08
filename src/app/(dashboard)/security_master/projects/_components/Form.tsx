@@ -66,7 +66,7 @@ export default function Form({ prefill }: Props) {
     formData.append('lat', data.lat)
     formData.append('long', data.long)
     formData.append('radius', data.radius.toString())
-    if (data.attachment.length) {
+    if (typeof data.attachment !== 'string' && data.attachment.length) {
       formData.append('attachment', data.attachment[0])
     }
 
