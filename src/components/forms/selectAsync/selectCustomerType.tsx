@@ -16,7 +16,7 @@ export default function SelectCustomerType(props: Props) {
   const getCompanyType = async (search: string) => {
     const data = await getCompanyTypeDropdown({
       search,
-      limit: '30',
+      limit: '100',
       page: '1',
     })
 

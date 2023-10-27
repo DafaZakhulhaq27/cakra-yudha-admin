@@ -16,7 +16,7 @@ export default function SelectLocation(props: Props) {
   const getData = async (search: string) => {
     const data = await getLocationDropdown({
       search,
-      limit: '30',
+      limit: '100',
       page: '1',
     })
 

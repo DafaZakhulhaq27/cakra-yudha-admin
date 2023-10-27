@@ -17,7 +17,7 @@ export default function SelectCurrency(props: Props) {
   const getData = async (search: string) => {
     const data = await getCurrencyDropdown({
       search,
-      limit: '30',
+      limit: '100',
       page: '1',
     })
 

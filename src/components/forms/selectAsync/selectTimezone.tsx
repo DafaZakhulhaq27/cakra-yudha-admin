@@ -18,7 +18,7 @@ export default function SelectTimezone(props: Props) {
   const getData = async (search: string) => {
     const data = await getTimezoneDropdown({
       search,
-      limit: '30',
+      limit: '100',
       page: '1',
     })
 

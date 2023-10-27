@@ -18,7 +18,7 @@ export default function SelectPositionLevel(props: Props) {
   const options = async (search: string) => {
     const data = await getPositionLevelDropdown({
       search,
-      limit: '30',
+      limit: '100',
       page: '1',
     })
 

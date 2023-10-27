@@ -20,7 +20,7 @@ export default function SelectProject({ type, ...props }: Props) {
   const getData = async (search: string) => {
     const data = await getProjectDropdown({
       search,
-      limit: '30',
+      limit: '100',
       page: '1',
       type: type,
     })
