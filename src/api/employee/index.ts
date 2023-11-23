@@ -37,7 +37,7 @@ export const deleteEmployee = async (id: string) =>
   fetcher<MainResponse>({
     path: `/api/v1/employe`,
     params: {
-      user_id: id,
+      _id: id,
     },
     options: {
       method: 'DELETE',
