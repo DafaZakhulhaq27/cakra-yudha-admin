@@ -161,12 +161,12 @@ export default function Form({ prefill }: Props) {
               name="gender"
               data={[
                 {
-                  label: 'Male',
-                  value: 'Male',
+                  label: 'Laki-Laki',
+                  value: 'Laki-Laki',
                 },
                 {
-                  label: 'Female',
-                  value: 'Female',
+                  label: 'Perempuan',
+                  value: 'Perempuan',
                 },
               ]}
             />
