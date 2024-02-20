@@ -27,7 +27,7 @@ const menu: SidebarItemProps[] = [
     icon: HiHome,
     title: DASHBOARD_PAGE_TITLE,
     link: '/home',
-    access: ['superadmin'],
+    access: ['*'],
   },
   {
     icon: HiUserGroup,
@@ -39,11 +39,11 @@ const menu: SidebarItemProps[] = [
     icon: HiClock,
     title: 'Timesheet',
     link: '/timesheet',
-    access: ['superadmin'],
     items: [
       {
         title: ATTENDENCE_PAGE_TITLE,
         link: '/attendence',
+        access: ['superadmin', 'client'],
       },
     ],
   },
@@ -51,15 +51,16 @@ const menu: SidebarItemProps[] = [
     icon: HiOfficeBuilding,
     title: 'Organization',
     link: '/organization',
-    access: ['superadmin'],
     items: [
       {
         title: COMPANY_PAGE_TITLE,
         link: '/companies',
+        access: ['superadmin'],
       },
       {
         title: LOCATION_PAGE_TITLE,
         link: '/locations',
+        access: ['superadmin'],
       },
     ],
   },
@@ -67,19 +68,21 @@ const menu: SidebarItemProps[] = [
     icon: HiBriefcase,
     title: 'Security Master',
     link: '/security_master',
-    access: ['superadmin'],
     items: [
       {
         title: CLIENT_PAGE_TITLE,
         link: '/client',
+        access: ['superadmin'],
       },
       {
         title: PROJECT_PAGE_TITLE,
         link: '/projects',
+        access: ['superadmin', 'client'],
       },
       {
         title: GROUP_PAGE_TITLE,
         link: '/groups',
+        access: ['superadmin'],
       },
     ],
   },
@@ -87,27 +90,31 @@ const menu: SidebarItemProps[] = [
     icon: HiDatabase,
     title: 'Master',
     link: '/master',
-    access: ['superadmin'],
     items: [
       {
         title: COMPANY_TYPE_PAGE_TITLE,
         link: '/company_type',
+        access: ['superadmin'],
       },
       {
         title: CURRENCY_PAGE_TITLE,
         link: '/currency',
+        access: ['superadmin'],
       },
       {
         title: TIMEZONE_PAGE_TITLE,
         link: '/timezone',
+        access: ['superadmin'],
       },
       {
         title: QUALIFICATION_PAGE_TITLE,
         link: '/qualification',
+        access: ['superadmin'],
       },
       {
         title: POSITION_LEVEL_PAGE_TITLE,
         link: '/position_level',
+        access: ['superadmin'],
       },
     ],
   },

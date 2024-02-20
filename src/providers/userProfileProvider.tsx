@@ -1,11 +1,11 @@
 'use client'
 
-import { UserProfile } from '@/app/(auth)/login/Models'
+import { UserProfileToken } from '@/app/(auth)/login/Models'
 import { UserContext } from '@/context/user'
 import { ReactNode, useMemo, useState } from 'react'
 
 interface Props {
-  user: UserProfile | null
+  user: UserProfileToken | null
   children: ReactNode
 }
 

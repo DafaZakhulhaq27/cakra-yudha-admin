@@ -4,6 +4,7 @@ import { IconType } from 'react-icons'
 export type NavChildProps = {
   title: string
   link: string
+  access?: string[]
 }
 
 export type SidebarItemProps = {

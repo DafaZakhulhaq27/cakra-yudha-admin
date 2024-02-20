@@ -10,10 +10,33 @@ type Props = {
 const Sidebar = ({ hideSidebar }: Props) => {
   const { currentUser } = useUserContext()
 
-  // const filteredMenu = menu.filter(item => {
-  //   return currentUser?.role && item.access?.includes(currentUser.role)
-  // })
+  const currentUserRole = currentUser?.role
+    ? currentUser.role.toLowerCase().replace(/\s/g, '')
+    : ''
+
   const filteredMenu = menu
+    .map(item => {
+      const filteredSubItems = item.items?.filter(subItem => {
+        const subItemAccess = subItem.access || ['superadmin'] // Default to 'superadmin' if no access property is defined
+        return (
+          subItemAccess.includes(currentUserRole) || subItemAccess.includes('*')
+        )
+      })
+
+      const mainItemAccess = item.access || ['superadmin'] // Default to 'superadmin' if no access property is defined
+      const hasAccess =
+        mainItemAccess.includes(currentUserRole) ||
+        mainItemAccess.includes('*') ||
+        (filteredSubItems && filteredSubItems.length > 0)
+
+      return {
+        ...item,
+        items: filteredSubItems,
+        // Include the main item only if it has access or if it has sub-menu items
+        ...(hasAccess ? { hasAccess: true } : {}),
+      }
+    })
+    .filter(item => item.hasAccess) // Filter out items without access
 
   return (
     <aside

@@ -1,4 +1,4 @@
-import { UserProfile } from '@/app/(auth)/login/Models'
+import { UserProfileToken } from '@/app/(auth)/login/Models'
 import MainLayout from '@/components/layouts'
 import UserProfileProvider from '@/providers/userProfileProvider'
 import { decodeJwt } from '@/utils/jwtDecode'
@@ -9,11 +9,13 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getSession()
   if (!session) redirect('/logout')
 
-  const userProfile = decodeJwt<UserProfile>(session.user.bearerToken ?? '')
+  const userProfile = decodeJwt<UserProfileToken>(
+    session.user.bearerToken ?? '',
+  )
 
   return (
     <UserProfileProvider user={userProfile}>
-      <MainLayout> {children}</MainLayout>
+      <MainLayout>{children}</MainLayout>
     </UserProfileProvider>
   )
 }

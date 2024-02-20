@@ -24,3 +24,12 @@ export type UserProfile = {
   address: string
   is_new_login: boolean
 }
+
+export type UserProfileToken = {
+  _id: string
+  email: string
+  first_name: string
+  contact_number: string
+  role: string
+  is_new_login: boolean
+}

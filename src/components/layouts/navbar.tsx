@@ -52,8 +52,13 @@ const MainNavbar = ({ toggleSidebar }: Props) => {
             }
           >
             <Dropdown.Header>
-              <span className="block text-sm">{currentUser?.first_name}</span>
-              <span className="block truncate text-sm font-medium">
+              <span className=" bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                {currentUser?.role}
+              </span>
+              <span className="block text-sm mt-3">
+                {currentUser?.first_name}
+              </span>
+              <span className="block truncate text-sm font-medium ">
                 {currentUser?.email}
               </span>
             </Dropdown.Header>
