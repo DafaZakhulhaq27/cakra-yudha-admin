@@ -2,6 +2,7 @@ import { getCompany } from '@/api/companies'
 import { SearchParamsProps } from '@/config/constant'
 import List from './_components/List'
 import { getProject } from '@/api/projects'
+import { ValetSecurityEnum } from '@/constant/valetSecurity'
 
 export default async function CompaniesPage({
   searchParams,
@@ -10,7 +11,7 @@ export default async function CompaniesPage({
     limit: String(searchParams?.limit ?? 10),
     page: String(searchParams?.page ?? 1),
     search: String(searchParams?.search ?? ''),
-    type: 'security',
+    type: ValetSecurityEnum.Security,
   })
 
   return <List res={res} />

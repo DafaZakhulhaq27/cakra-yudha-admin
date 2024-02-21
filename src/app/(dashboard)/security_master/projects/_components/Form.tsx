@@ -16,6 +16,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { ProjectModel, projectModel } from './Model'
 import { PROJECT_PAGE_TITLE } from '@/constant/page'
+import { ValetSecurityEnum } from '@/constant/valetSecurity'
 
 type Props = {
   prefill?: ProjectDetail
@@ -70,7 +71,7 @@ export default function Form({ prefill }: Props) {
       formData.append('attachment', data.attachment[0])
     }
 
-    formData.append('type', 'security')
+    formData.append('type', ValetSecurityEnum.Security)
 
     const res = prefill
       ? await editProject(prefill._id, formData)
@@ -114,7 +115,7 @@ export default function Form({ prefill }: Props) {
               placeholder="Project Code"
               required
             />
-            <SelectClient name="client_id" type="security" />
+            <SelectClient name="client_id" type={ValetSecurityEnum.Security} />
             <Input
               type="number"
               label="Phone Number"

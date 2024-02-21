@@ -16,6 +16,7 @@ import toast from 'react-hot-toast'
 import { GroupModel, groupModel } from './Model'
 import SelectProject from '@/components/forms/selectAsync/selectProject'
 import Select from '@/components/forms/select'
+import { ValetSecurityEnum } from '@/constant/valetSecurity'
 
 type Props = {
   prefill?: GroupDetail
@@ -53,7 +54,7 @@ export default function Form({ prefill }: Props) {
     e.preventDefault()
 
     const formValue = {
-      type: 'security',
+      type: ValetSecurityEnum.Security,
       ...data,
     }
 
@@ -86,7 +87,10 @@ export default function Form({ prefill }: Props) {
           noValidate
         >
           <div className="grid grid-flow-row grid-cols-1 lg:grid-cols-2 gap-5">
-            <SelectProject name="project_id" type={'security'} />
+            <SelectProject
+              name="project_id"
+              type={ValetSecurityEnum.Security}
+            />
             <Select
               placeHolder={'Select Geo Status'}
               label={'Geo Status'}
