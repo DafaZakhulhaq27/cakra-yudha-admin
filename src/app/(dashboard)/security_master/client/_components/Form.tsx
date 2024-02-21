@@ -14,6 +14,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { ClientModel, clientModel } from './Model'
 import { CLIENT_PAGE_TITLE } from '@/constant/page'
+import { ValetSecurityEnum } from '@/constant/valetSecurity'
 
 type Props = {
   prefill?: ClientDetail
@@ -39,6 +40,9 @@ export default function Form({ prefill }: Props) {
       desc: prefill?.desc,
       lat: prefill?.lat,
       long: prefill?.long,
+      type: ValetSecurityEnum.Security,
+      email: prefill?.email,
+      password: prefill ? undefined : '',
     },
   })
 
@@ -50,10 +54,7 @@ export default function Form({ prefill }: Props) {
   const onSubmit = async (data: ClientModel, e: any) => {
     e.preventDefault()
 
-    const formValue = {
-      type: 'security',
-      ...data,
-    }
+    const formValue = data
 
     const res = prefill
       ? await editClient(prefill._id, formValue)
@@ -147,6 +148,21 @@ export default function Form({ prefill }: Props) {
               label="Long"
               name="long"
               placeholder="Long"
+              required
+            />
+            <Input label="Email" name="email" placeholder="Email" required />
+            <Input
+              type="password"
+              label="Password"
+              name="password"
+              placeholder="Password"
+              required
+            />{' '}
+            <Input
+              type="password"
+              label="Password Confirmation"
+              name="password_confirmation"
+              placeholder="Password Confirmation"
               required
             />
           </div>
