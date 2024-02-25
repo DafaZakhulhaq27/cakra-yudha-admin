@@ -8,6 +8,7 @@ import MainPagination from '@/components/list/pagination'
 import Search from '@/components/list/search'
 import Table from '@/components/list/table'
 import { PROJECT_PAGE_TITLE } from '@/constant/page'
+import { useUserContext } from '@/hooks/context'
 import useLoading from '@/hooks/loading'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -22,6 +23,7 @@ export default function List({ res }: Props) {
   const router = useRouter()
   const { data, limit, total_data, total_page } = res
   const { setLoading, LoadingOverlay } = useLoading()
+  const { currentUser } = useUserContext()
 
   return (
     <LoadingOverlay>
@@ -30,14 +32,17 @@ export default function List({ res }: Props) {
           <div className="w-full xl:w-1/2 flex gap-5">
             <Search />
           </div>
-          <div className="w-full xl:w-auto flex flex-col xl:flex-row space-y-2 xl:space-y-0 items-stretch xl:items-center justify-end xl:space-x-3 flex-shrink-0">
-            <Link href="/security_master/projects/create">
-              <Button>
-                <HiPlus />
-                Add {PROJECT_PAGE_TITLE}
-              </Button>
-            </Link>
-          </div>
+          {currentUser?.role.toLowerCase().replace(/\s/g, '') ===
+            'superadmin' && (
+            <div className="w-full xl:w-auto flex flex-col xl:flex-row space-y-2 xl:space-y-0 items-stretch xl:items-center justify-end xl:space-x-3 flex-shrink-0">
+              <Link href="/security_master/projects/create">
+                <Button>
+                  <HiPlus />
+                  Add {PROJECT_PAGE_TITLE}
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
         <div className="overflow-x-auto">
           <Table
