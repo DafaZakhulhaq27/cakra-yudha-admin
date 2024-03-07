@@ -1,32 +1,66 @@
 'use client'
 
+import { exportExcelAttendence } from '@/api/attendence'
 import { GetAttendence } from '@/api/attendence/model'
-import { deleteLocation } from '@/api/locations'
-import { Location } from '@/api/locations/model'
+import { getProjectDropdown } from '@/api/projects'
+import Button from '@/components/forms/button'
 import LayoutPage from '@/components/layouts/layoutPage'
 import MainPagination from '@/components/list/pagination'
 import Search from '@/components/list/search'
+import SelectFilter from '@/components/list/selectFilter'
 import Table from '@/components/list/table'
 import { ATTENDENCE_PAGE_TITLE } from '@/constant/page'
 import useLoading from '@/hooks/loading'
-import { useRouter } from 'next/navigation'
-import toast from 'react-hot-toast'
+import { useEffect, useState } from 'react'
 
 type Props = {
   res: GetAttendence
 }
 
 export default function List({ res }: Props) {
-  const router = useRouter()
   const { data, limit, total_data, total_page } = res
-  const { setLoading, LoadingOverlay } = useLoading()
+  const { LoadingOverlay } = useLoading()
+
+  // Get Projects Dropdown
+  const [isLoadingProject, setIsLoadingProject] = useState(false)
+  const [projectsDropdown, setProjectsDropdown] = useState<SelectItem[]>([])
+
+  const fetchData = async () => {
+    setIsLoadingProject(true)
+    const res = await getProjectDropdown({ page: '1', limit: '9999' })
+    if (res && res.data) {
+      setProjectsDropdown(
+        res.data.map(_ => ({ label: _.project_name, value: _._id })),
+      )
+    }
+    setIsLoadingProject(false)
+  }
+
+  const onExportExcel = async () => {
+    const res = await exportExcelAttendence()
+    const blob = await res.blob()
+
+    var file = window.URL.createObjectURL(blob)
+    window.location.assign(file)
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <LoadingOverlay>
       <LayoutPage name={ATTENDENCE_PAGE_TITLE}>
         <div className="flex flex-col xl:flex-row items-center justify-between space-y-3 xl:space-y-0 xl:space-x-4 p-4">
-          <div className="w-full xl:w-1/2 flex gap-5">
+          <div className="d-flex flex-col xl:flex-row w-full flex gap-5">
             <Search />
+            <SelectFilter
+              data={projectsDropdown}
+              placeHolder={'Filter By Project'}
+              name={'project_id'}
+            />
+
+            <Button onClick={onExportExcel}>Export Excel</Button>
           </div>
         </div>
         <div className="overflow-x-auto">

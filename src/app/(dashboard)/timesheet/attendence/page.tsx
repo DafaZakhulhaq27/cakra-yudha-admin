@@ -9,6 +9,7 @@ export default async function AttendencePage({
     limit: String(searchParams?.limit ?? 10),
     page: String(searchParams?.page ?? 1),
     search: String(searchParams?.search ?? ''),
+    project_id: String(searchParams?.project_id ?? ''),
   })
 
   return <List res={res} />
