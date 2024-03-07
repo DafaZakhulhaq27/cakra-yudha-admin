@@ -1,6 +1,6 @@
 'use client'
 
-import { exportExcelAttendence } from '@/api/attendence'
+import { getAllAttendenceClient } from '@/api/attendence'
 import { GetAttendence } from '@/api/attendence/model'
 import { getProjectDropdown } from '@/api/projects'
 import Button from '@/components/forms/button'
@@ -11,6 +11,8 @@ import SelectFilter from '@/components/list/selectFilter'
 import Table from '@/components/list/table'
 import { ATTENDENCE_PAGE_TITLE } from '@/constant/page'
 import useLoading from '@/hooks/loading'
+import { useQueryNavigation } from '@/hooks/navigation'
+import { ExportExcel } from '@/utils/exportFiles'
 import { useEffect, useState } from 'react'
 
 type Props = {
@@ -20,6 +22,7 @@ type Props = {
 export default function List({ res }: Props) {
   const { data, limit, total_data, total_page } = res
   const { LoadingOverlay } = useLoading()
+  const { currentParams } = useQueryNavigation()
 
   // Get Projects Dropdown
   const [isLoadingProject, setIsLoadingProject] = useState(false)
@@ -37,11 +40,10 @@ export default function List({ res }: Props) {
   }
 
   const onExportExcel = async () => {
-    const res = await exportExcelAttendence()
-    const blob = await res.blob()
+    const projectId = currentParams.get('project_id')
+    const { data } = await getAllAttendenceClient(projectId)
 
-    var file = window.URL.createObjectURL(blob)
-    window.location.assign(file)
+    ExportExcel(data, 'attendence-data')
   }
 
   useEffect(() => {
