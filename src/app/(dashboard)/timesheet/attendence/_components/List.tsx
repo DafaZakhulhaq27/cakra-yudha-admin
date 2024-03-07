@@ -41,7 +41,7 @@ export default function List({ res }: Props) {
 
   const onExportExcel = async () => {
     const projectId = currentParams.get('project_id')
-    const { data } = await getAllAttendenceClient(projectId)
+    const { data } = await getAllAttendenceClient(projectId ?? '')
 
     ExportExcel(data, 'attendence-data')
   }
