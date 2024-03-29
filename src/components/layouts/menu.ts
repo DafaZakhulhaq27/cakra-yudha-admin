@@ -9,6 +9,7 @@ import {
 import { SidebarItemProps } from './types'
 import {
   ATTENDENCE_PAGE_TITLE,
+  BARCODE_PATROLI_PAGE_TITLE,
   CLIENT_PAGE_TITLE,
   COMPANY_PAGE_TITLE,
   COMPANY_TYPE_PAGE_TITLE,
@@ -82,6 +83,11 @@ const menu: SidebarItemProps[] = [
       {
         title: GROUP_PAGE_TITLE,
         link: '/groups',
+        access: ['superadmin'],
+      },
+      {
+        title: BARCODE_PATROLI_PAGE_TITLE,
+        link: '/barcode-patroli',
         access: ['superadmin'],
       },
     ],

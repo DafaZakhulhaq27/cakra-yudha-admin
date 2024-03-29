@@ -1,7 +1,6 @@
 import { fetcher } from '@/utils/fetcher'
 import { filter } from '../filter'
 import { MainResponse } from '../response'
-import { ClientModel } from '@/app/(dashboard)/security_master/client/_components/Model'
 import { ValetSecurityType } from '@/constant/valetSecurity'
 import { GetDetaiGroup, GetGroup } from './model'
 import { GroupModel } from '@/app/(dashboard)/security_master/groups/_components/Model'

@@ -1,4 +1,3 @@
-import { getClientDropdown } from '@/api/client'
 import { getProjectDropdown } from '@/api/projects'
 import { ValetSecurityType } from '@/constant/valetSecurity'
 import { SelectHTMLAttributes } from 'react'
