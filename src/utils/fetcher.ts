@@ -42,6 +42,7 @@ export async function fetcher<T>({
   const paramsUrl = params ? '?' + new URLSearchParams(params).toString() : ''
 
   url = (typeof path === 'string' ? baseURL + path : path.fullUrl) + paramsUrl
+
   const headers: HeadersInit = {
     accept: 'application/json',
     'X-API-KEY': API_KEY,

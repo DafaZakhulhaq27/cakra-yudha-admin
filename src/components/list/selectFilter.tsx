@@ -14,7 +14,7 @@ export default function SelectFilter({ data, placeHolder, name }: SelectProps) {
 
         appendQuery({ [name]: value, page: '1' })
       }}
-      className="rounded-lg block py-2 px-4 w-1/2 text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+      className="rounded-lg block py-2 px-4 w-52 text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
     >
       <option value={''}>{placeHolder}</option>
       {data.map((option, index) => (

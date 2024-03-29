@@ -5,6 +5,7 @@ import { GetAttendence } from '@/api/attendence/model'
 import { getProjectDropdown } from '@/api/projects'
 import Button from '@/components/forms/button'
 import LayoutPage from '@/components/layouts/layoutPage'
+import DateRangeFilter from '@/components/list/dateRangeFilter'
 import MainPagination from '@/components/list/pagination'
 import Search from '@/components/list/search'
 import SelectFilter from '@/components/list/selectFilter'
@@ -14,6 +15,7 @@ import useLoading from '@/hooks/loading'
 import { useQueryNavigation } from '@/hooks/navigation'
 import { ExportExcel } from '@/utils/exportFiles'
 import { useEffect, useState } from 'react'
+import Datepicker from 'react-tailwindcss-datepicker'
 
 type Props = {
   res: GetAttendence
@@ -58,9 +60,10 @@ export default function List({ res }: Props) {
             <Search />
             <SelectFilter
               data={projectsDropdown}
-              placeHolder={'Filter By Project'}
+              placeHolder={'All Project'}
               name={'project_id'}
             />
+            <DateRangeFilter />
 
             <Button onClick={onExportExcel}>Export Excel</Button>
           </div>
