@@ -1,6 +1,5 @@
 'use client'
 
-import { createCompanyType, editCompanyType } from '@/api/companyType'
 import { Qualification } from '@/api/qualification/model'
 import Button from '@/components/forms/button'
 import Input from '@/components/forms/input'

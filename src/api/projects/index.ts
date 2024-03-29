@@ -20,7 +20,7 @@ export const getProjectDropdown = async (params: ProjectParams) =>
 export const getDetailProject = async (id: string, type: ValetSecurityType) =>
   fetcher<GetDetaiProject>({
     path: `/v1/project`,
-    params: { _id: id },
+    params: { _id: id, type: type },
   })
 
 export const createProject = async (form: FormData) =>

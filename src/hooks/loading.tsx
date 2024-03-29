@@ -6,6 +6,7 @@ type LoadingOverlayProps = {
 }
 
 type UseLoadingResult = {
+  // eslint-disable-next-line no-unused-vars
   setLoading: (value: boolean) => void
   LoadingOverlay: React.FC<LoadingOverlayProps>
 }

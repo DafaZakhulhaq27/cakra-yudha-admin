@@ -1,4 +1,3 @@
-import { getDetailLocation } from '@/api/locations'
 import Form from '../_components/Form'
 import { getDetailClient } from '@/api/client'
 import { ValetSecurityEnum } from '@/constant/valetSecurity'

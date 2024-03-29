@@ -12,7 +12,6 @@ import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { CompanyTypeModel, companyTypeModel } from './Model'
 import { COMPANY_TYPE_PAGE_TITLE } from '@/constant/page'
-import { error } from 'console'
 
 type Props = {
   prefill?: CompanyType

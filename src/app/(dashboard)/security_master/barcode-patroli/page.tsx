@@ -1,6 +1,6 @@
 import { SearchParamsProps } from '@/config/constant'
 import List from './_components/List'
-import { getBarcodePatroli } from '@/api/barcodePatroli'
+import { getBarcodePatroli, getGenerateBarcode } from '@/api/barcodePatroli'
 
 export default async function BarcodePatroliPage({
   searchParams,
@@ -11,5 +11,11 @@ export default async function BarcodePatroliPage({
     search: String(searchParams?.search ?? ''),
   })
 
-  return <List res={res} />
+  const resGenerateBarcode = await getGenerateBarcode({
+    search: String(searchParams?.search ?? ''),
+    start_date: String(searchParams?.start_date ?? ''),
+    end_date: String(searchParams?.end_date ?? ''),
+  })
+
+  return <List res={res} generateBarcode={resGenerateBarcode} />
 }

@@ -1,4 +1,3 @@
-import { getCompanyTypeDropdown } from '@/api/companyType'
 import { getCurrencyDropdown } from '@/api/currency'
 import { SelectHTMLAttributes } from 'react'
 import { useFormContext } from 'react-hook-form'

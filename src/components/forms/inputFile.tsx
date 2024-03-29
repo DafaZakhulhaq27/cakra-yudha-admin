@@ -10,9 +10,7 @@ type Props = {
 const InputFile = ({ label, ...props }: Props) => {
   const {
     control,
-    getValues,
     register,
-    setValue,
     formState: { errors },
   } = useFormContext()
   const errorMessage = errors[props.name]?.message

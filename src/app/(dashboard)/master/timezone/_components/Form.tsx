@@ -1,6 +1,5 @@
 'use client'
 
-import { createCurrency, editCurrency } from '@/api/currency'
 import { Timezone } from '@/api/timezone/model'
 import Button from '@/components/forms/button'
 import Input from '@/components/forms/input'

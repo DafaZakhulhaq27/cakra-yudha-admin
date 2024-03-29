@@ -1,6 +1,5 @@
 'use client'
 
-import { Currency } from '@/api/currency/model'
 import { deleteLocation } from '@/api/locations'
 import { GetLocation, Location } from '@/api/locations/model'
 import Button from '@/components/forms/button'

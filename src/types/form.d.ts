@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 type SelectItem = {
   label: string
   value: string

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useQueryNavigation } from '@/hooks/navigation'
 import { Button, Modal, Tooltip } from 'flowbite-react'
 import { useRef, useState } from 'react'

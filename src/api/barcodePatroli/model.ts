@@ -19,11 +19,22 @@ export type BarcodePatroli = {
   keterangan: string
 }
 
+export type BarcodeGenerate = {
+  _id: string
+  id_barcode: string
+  name: string
+  created_at: string
+}
+
 export type BarcodePatroliDetail = BarcodePatroli
 
 export type GetBarcodePatroli = {
   data: BarcodePatroli[]
 } & PagedResponse
+
+export type GetBarcodeGenerate = {
+  data: BarcodeGenerate[]
+}
 
 export type GetDetaiBarcodePatroli = {
   data: BarcodePatroliDetail

@@ -39,7 +39,6 @@ export default function InputFile({ label, allowedTypes, ...props }: Props) {
     setLoading(true)
     uploadTask.on(
       'state_changed',
-      snapshot => {},
       error => {
         alert(error)
         setLoading(false)

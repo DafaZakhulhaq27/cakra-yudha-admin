@@ -1,5 +1,6 @@
 import XLSX from 'sheetjs-style'
 import * as FileSaver from 'file-saver'
+import { toJpeg } from 'html-to-image'
 
 export const ExportExcel = (data: unknown[], fileName: string) => {
   const fileType =
@@ -11,4 +12,17 @@ export const ExportExcel = (data: unknown[], fileName: string) => {
   const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' })
   const dataExcel = new Blob([excelBuffer], { type: fileType })
   FileSaver.saveAs(dataExcel, fileName + fileExtension)
+}
+
+export const ExportImageJpg = (element: HTMLElement, fileName: string) => {
+  toJpeg(element, { cacheBust: false })
+    .then(dataUrl => {
+      const link = document.createElement('a')
+      link.download = `${fileName}.jpeg`
+      link.href = dataUrl
+      link.click()
+    })
+    .catch(err => {
+      console.log(err)
+    })
 }

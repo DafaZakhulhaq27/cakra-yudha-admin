@@ -55,7 +55,7 @@ export default function Form({ prefill }: Props) {
 
   const {
     handleSubmit,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting },
   } = methods
 
   const onSubmit = async (data: CompanyModel, e: any) => {

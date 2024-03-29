@@ -1,6 +1,4 @@
-import { getCompanyTypeDropdown } from '@/api/companyType'
 import { getPositionLevelDropdown } from '@/api/positionLevel'
-import { getQualificationDropdown } from '@/api/qualification'
 import { SelectHTMLAttributes } from 'react'
 import { useFormContext } from 'react-hook-form'
 import AsyncSelect from 'react-select/async'

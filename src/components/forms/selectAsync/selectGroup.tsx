@@ -1,5 +1,4 @@
 import { getGroupDropdown } from '@/api/group'
-import { getProjectDropdown } from '@/api/projects'
 import { ValetSecurityType } from '@/constant/valetSecurity'
 import { SelectHTMLAttributes } from 'react'
 import { useFormContext } from 'react-hook-form'

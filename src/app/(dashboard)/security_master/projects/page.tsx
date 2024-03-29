@@ -1,4 +1,3 @@
-import { getCompany } from '@/api/companies'
 import { SearchParamsProps } from '@/config/constant'
 import List from './_components/List'
 import { getProject } from '@/api/projects'

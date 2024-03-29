@@ -1,4 +1,3 @@
-import { CurrencyModel } from '@/app/(dashboard)/master/currency/_components/Model'
 import { fetcher } from '@/utils/fetcher'
 import { filter } from '../filter'
 import { MainResponse } from '../response'

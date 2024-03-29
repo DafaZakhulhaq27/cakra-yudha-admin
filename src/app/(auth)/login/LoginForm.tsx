@@ -30,7 +30,7 @@ const LoginForm = () => {
     formState: { isSubmitting },
   } = methods
 
-  const onSubmit = async (data: LoginModel, e: any) => {
+  const onSubmit = async (data: LoginModel) => {
     try {
       const res = await signIn('credentials', { redirect: false, ...data })
       if (res?.error) {

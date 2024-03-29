@@ -29,7 +29,7 @@ export default function ConfirmModal() {
                 color="failure"
                 onClick={() => props.setOpenModal(undefined)}
               >
-                Yes, I'm sure
+                Yes sure
               </Button>
               <Button
                 color="gray"

@@ -15,7 +15,6 @@ import useLoading from '@/hooks/loading'
 import { useQueryNavigation } from '@/hooks/navigation'
 import { ExportExcel } from '@/utils/exportFiles'
 import { useEffect, useState } from 'react'
-import Datepicker from 'react-tailwindcss-datepicker'
 
 type Props = {
   res: GetAttendence
@@ -27,18 +26,15 @@ export default function List({ res }: Props) {
   const { currentParams } = useQueryNavigation()
 
   // Get Projects Dropdown
-  const [isLoadingProject, setIsLoadingProject] = useState(false)
   const [projectsDropdown, setProjectsDropdown] = useState<SelectItem[]>([])
 
   const fetchData = async () => {
-    setIsLoadingProject(true)
     const res = await getProjectDropdown({ page: '1', limit: '9999' })
     if (res && res.data) {
       setProjectsDropdown(
         res.data.map(_ => ({ label: _.project_name, value: _._id })),
       )
     }
-    setIsLoadingProject(false)
   }
 
   const onExportExcel = async () => {

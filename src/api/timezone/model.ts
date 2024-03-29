@@ -1,4 +1,3 @@
-import { UserProfile } from '@/app/(auth)/login/Models'
 import { MainResponse, PagedResponse } from '../response'
 
 export type Timezone = {

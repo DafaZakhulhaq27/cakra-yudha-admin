@@ -1,9 +1,4 @@
-import {
-  imageRequired,
-  numberRequired,
-  phoneNumberSchema,
-  stringRequired,
-} from '@/config/form'
+import { phoneNumberSchema, stringRequired } from '@/config/form'
 import { any, object, string, z } from 'zod'
 
 export const companyModel = object({

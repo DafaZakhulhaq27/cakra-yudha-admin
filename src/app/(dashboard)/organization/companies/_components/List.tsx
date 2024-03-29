@@ -2,7 +2,6 @@
 
 import { deleteCompany } from '@/api/companies'
 import { Company, GetCompany } from '@/api/companies/model'
-import { Currency } from '@/api/currency/model'
 import Button from '@/components/forms/button'
 import LayoutPage from '@/components/layouts/layoutPage'
 import MainPagination from '@/components/list/pagination'

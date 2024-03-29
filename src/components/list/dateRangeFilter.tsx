@@ -18,6 +18,12 @@ export default function DateRangeFilter() {
         ['end_date']: v.endDate.toString(),
         page: '1',
       })
+    } else {
+      appendQuery({
+        ['start_date']: '',
+        ['end_date']: '',
+        page: '1',
+      })
     }
   }
 
