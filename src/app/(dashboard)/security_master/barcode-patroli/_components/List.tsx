@@ -121,6 +121,7 @@ export default function List({ res, generateBarcode }: Props) {
                   {generateBarcode.data.map(_ => (
                     <div key={_._id}>
                       <QRCode value={_.id_barcode} logoImage="/logo.jpg" />
+                      <p className="text-center">{_.name}</p>
                     </div>
                   ))}
                 </div>
