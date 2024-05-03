@@ -10,6 +10,7 @@ import { SidebarItemProps } from './types'
 import {
   ATTENDENCE_PAGE_TITLE,
   BARCODE_PATROLI_PAGE_TITLE,
+  BARCODE_SCAN_MOBILE_PAGE_TITLE,
   CLIENT_PAGE_TITLE,
   COMPANY_PAGE_TITLE,
   COMPANY_TYPE_PAGE_TITLE,
@@ -45,6 +46,11 @@ const menu: SidebarItemProps[] = [
         title: ATTENDENCE_PAGE_TITLE,
         link: '/attendence',
         access: ['superadmin', 'client'],
+      },
+      {
+        title: BARCODE_SCAN_MOBILE_PAGE_TITLE,
+        link: '/barcode_scan_mobile',
+        access: ['superadmin'],
       },
     ],
   },

@@ -2,6 +2,7 @@ export const DASHBOARD_PAGE_TITLE = 'Dashboard'
 
 export const EMPLOYEE_PAGE_TITLE = 'Employee'
 export const ATTENDENCE_PAGE_TITLE = 'Attendence'
+export const BARCODE_SCAN_MOBILE_PAGE_TITLE = 'Barcode Scan Mobile'
 
 // Master
 export const COMPANY_TYPE_PAGE_TITLE = 'Company Type'

@@ -3,6 +3,7 @@ import { filter } from '../filter'
 import {
   GetBarcodeGenerate,
   GetBarcodePatroli,
+  GetBarcodeScanMobile,
   GetDetaiBarcodePatroli,
 } from './model'
 import { MainResponse } from '../response'
@@ -24,6 +25,20 @@ export const getGenerateBarcode = async (params: GenerateBarcodeParams) =>
   fetcher<GetBarcodeGenerate>({
     path: '/v1/barcode_patroli/show_all_barcode',
     params: params,
+  })
+
+export const getBarcodeScanMobile = async (
+  params: GenerateBarcodeParams & filter,
+) =>
+  fetcher<GetBarcodeScanMobile>({
+    path: '/v1/barcode_patroli/result_scan_barcode_mobile',
+    params: params,
+  })
+
+export const getAllBarcodeScanMobile = async (project_id?: string | null) =>
+  fetcher<GetBarcodeScanMobile>({
+    path: '/api/v1/barcode_patroli/result_scan_barcode_mobile',
+    params: { limit: '99999', project_id: project_id },
   })
 
 export const getDetailBarcodePatroli = async (id: string) =>

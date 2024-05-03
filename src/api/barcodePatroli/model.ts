@@ -26,6 +26,26 @@ export type BarcodeGenerate = {
   created_at: string
 }
 
+export type BarcodeScanMobile = {
+  _id: string
+  id_barcode: string
+  user_id: {
+    _id: string
+    name: string
+  }
+  project_id: {
+    _id: string
+    name: string
+  }
+  group_id: {
+    _id: string
+    name: string
+  }
+  desc: string
+  createdAt: string
+  image: string
+}
+
 export type BarcodePatroliDetail = BarcodePatroli
 
 export type GetBarcodePatroli = {
@@ -39,3 +59,7 @@ export type GetBarcodeGenerate = {
 export type GetDetaiBarcodePatroli = {
   data: BarcodePatroliDetail
 } & MainResponse
+
+export type GetBarcodeScanMobile = {
+  data: BarcodeScanMobile[]
+} & PagedResponse
