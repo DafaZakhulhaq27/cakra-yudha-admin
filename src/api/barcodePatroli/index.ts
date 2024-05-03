@@ -14,6 +14,7 @@ type GenerateBarcodeParams = {
   search?: string
   start_date?: string
   end_date?: string
+  project_id?: string
 }
 
 export const getBarcodePatroli = async (params: BarcodePatroliParams) =>

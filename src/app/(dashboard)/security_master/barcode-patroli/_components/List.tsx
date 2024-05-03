@@ -5,18 +5,20 @@ import {
   GetBarcodePatroli,
 } from '@/api/barcodePatroli/model'
 import { Group } from '@/api/group/model'
+import { getProjectDropdown } from '@/api/projects'
 import Button from '@/components/forms/button'
 import LayoutPage from '@/components/layouts/layoutPage'
 import DateRangeFilter from '@/components/list/dateRangeFilter'
 import MainPagination from '@/components/list/pagination'
 import Search from '@/components/list/search'
+import SelectFilter from '@/components/list/selectFilter'
 import Table from '@/components/list/table'
 import TabNav from '@/components/nav/TabNav'
 import { BARCODE_PATROLI_PAGE_TITLE } from '@/constant/page'
 import { ExportImageJpg } from '@/utils/exportFiles'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { HiPlus } from 'react-icons/hi'
 import { QRCode } from 'react-qrcode-logo'
 
@@ -28,6 +30,19 @@ type Props = {
 export default function List({ res, generateBarcode }: Props) {
   const router = useRouter()
   const { data, limit, total_data, total_page } = res
+  // Get Projects Dropdown
+  const [projectsDropdown, setProjectsDropdown] = useState<SelectItem[]>([])
+  const fetchData = async () => {
+    const res = await getProjectDropdown({ page: '1', limit: '9999' })
+    if (res && res.data) {
+      setProjectsDropdown(
+        res.data.map(_ => ({ label: _.project_name, value: _._id })),
+      )
+    }
+  }
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   const generateBarcodeRef = useRef(null)
 
@@ -103,6 +118,11 @@ export default function List({ res, generateBarcode }: Props) {
                   <div className="w-full xl:w-1/2 flex gap-5">
                     <Search />
                     <DateRangeFilter />
+                    <SelectFilter
+                      data={projectsDropdown}
+                      placeHolder={'All Project'}
+                      name={'project_id'}
+                    />
                   </div>
                   <div className="w-full xl:w-auto flex flex-col xl:flex-row space-y-2 xl:space-y-0 items-stretch xl:items-center justify-end xl:space-x-3 flex-shrink-0">
                     <Button

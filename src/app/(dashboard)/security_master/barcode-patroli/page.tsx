@@ -15,6 +15,7 @@ export default async function BarcodePatroliPage({
     search: String(searchParams?.search ?? ''),
     start_date: String(searchParams?.start_date ?? ''),
     end_date: String(searchParams?.end_date ?? ''),
+    project_id: String(searchParams?.project_id ?? ''),
   })
 
   return <List res={res} generateBarcode={resGenerateBarcode} />
