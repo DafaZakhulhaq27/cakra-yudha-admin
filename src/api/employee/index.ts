@@ -9,6 +9,12 @@ type EmployeeParams = filter
 export const getEmployee = async (params: EmployeeParams) =>
   fetcher<GetEmployee>({ path: '/v1/employe', params: params })
 
+export const getEmployeeDropdown = async (params: EmployeeParams) =>
+  fetcher<GetEmployee>({
+    path: '/api/v1/employe',
+    params,
+  })
+
 export const getDetailEmployee = async (id: string) =>
   fetcher<GetDetaiEmployee>({ path: `/v1/employe`, params: { _id: id } })
 
