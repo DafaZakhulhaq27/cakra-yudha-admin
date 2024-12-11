@@ -1,5 +1,3 @@
-'use client'
-
 import { getSession } from '@/utils/session'
 import Form from '../_components/Form'
 import { redirect } from 'next/navigation'
