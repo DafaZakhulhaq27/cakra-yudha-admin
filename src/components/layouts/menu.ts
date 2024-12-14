@@ -50,7 +50,7 @@ const menu: SidebarItemProps[] = [
       {
         title: BARCODE_SCAN_MOBILE_PAGE_TITLE,
         link: '/barcode_scan_mobile',
-        access: ['superadmin'],
+        access: ['superadmin', 'client'],
       },
     ],
   },
