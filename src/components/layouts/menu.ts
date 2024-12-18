@@ -35,7 +35,7 @@ const menu: SidebarItemProps[] = [
     icon: HiUserGroup,
     title: 'Employee',
     link: '/employee',
-    access: ['superadmin'],
+    access: ['superadmin', 'client'],
   },
   {
     icon: HiClock,
