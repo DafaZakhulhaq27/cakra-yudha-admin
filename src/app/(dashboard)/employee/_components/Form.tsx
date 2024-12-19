@@ -20,6 +20,7 @@ import SelectQualification from '@/components/forms/selectAsync/selectQualificat
 import SelectPositionLevel from '@/components/forms/selectAsync/selectPositionLevel'
 import SelectLocation from '@/components/forms/selectAsync/selectLocation'
 import SelectGroup from '@/components/forms/selectAsync/selectGroup'
+import { useUserContext } from '@/hooks/context'
 
 type Props = {
   prefill?: EmployeeDetail
@@ -61,10 +62,11 @@ export default function Form({ prefill }: Props) {
       address: prefill?.address,
     },
   })
+  const { currentUser } = useUserContext()
 
   const {
     handleSubmit,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting },
   } = methods
 
   const onSubmit = async (data: EmployeeModel, e: any) => {
@@ -90,7 +92,8 @@ export default function Form({ prefill }: Props) {
     }
   }
 
-  console.log(errors, 'errors')
+  const isSuperAdmin =
+    currentUser?.role.toLowerCase().replace(/\s/g, '') === 'superadmin'
 
   return (
     <LayoutPage name={`${prefill ? 'Edit' : 'Add'} ${EMPLOYEE_PAGE_TITLE}`}>
@@ -106,6 +109,7 @@ export default function Form({ prefill }: Props) {
               name="username"
               placeholder="Username"
               required
+              disabled={!isSuperAdmin}
             />
             <Input label="Email" name="email" placeholder="Email" required />
             <Input
@@ -113,18 +117,21 @@ export default function Form({ prefill }: Props) {
               name="first_name"
               placeholder="First Name"
               required
+              disabled={!isSuperAdmin}
             />
             <Input
               label="Last Name"
               name="last_name"
               placeholder="Last Name"
               required
+              disabled={!isSuperAdmin}
             />
             <Input
               label="Employee Id"
               name="employe_id"
               placeholder="Employee Id"
               required
+              disabled={!isSuperAdmin}
             />
             <Input
               type="date"
@@ -132,6 +139,7 @@ export default function Form({ prefill }: Props) {
               name="join_date"
               placeholder="Join Date"
               required
+              disabled={!isSuperAdmin}
             />
             <Input
               type="number"
@@ -139,21 +147,30 @@ export default function Form({ prefill }: Props) {
               name="nik"
               placeholder="Nik"
               required
+              disabled={!isSuperAdmin}
             />
-            <Input label="NPWP" name="npwp" placeholder="NPWP" required />
+            <Input
+              label="NPWP"
+              name="npwp"
+              placeholder="NPWP"
+              required
+              disabled={!isSuperAdmin}
+            />
             <Input
               type="password"
               label="Password"
               name="password"
               placeholder="Password"
               required
-            />{' '}
+              disabled={!isSuperAdmin}
+            />
             <Input
               type="password"
               label="Password Confirmation"
               name="password_confirmation"
               placeholder="Password Confirmation"
               required
+              disabled={!isSuperAdmin}
             />
             <Select
               placeHolder={'Select Gender'}
@@ -169,16 +186,19 @@ export default function Form({ prefill }: Props) {
                   value: 'Perempuan',
                 },
               ]}
+              disabled={!isSuperAdmin}
             />
-            <SelectCompany name="company_id" />{' '}
-            <SelectLocation name="location_id" />{' '}
-            <SelectProject name="project_id" /> <SelectGroup name="group_id" />{' '}
+            <SelectCompany name="company_id" disabled={!isSuperAdmin} />
+            <SelectLocation name="location_id" disabled={!isSuperAdmin} />
+            <SelectProject name="project_id" disabled={!isSuperAdmin} />
+            <SelectGroup name="group_id" disabled={!isSuperAdmin} />
             <Input
               type="date"
               label="Date of Birth"
               name="date_of_birth"
               placeholder="Date of Birth"
               required
+              disabled={!isSuperAdmin}
             />
             <Input
               type="number"
@@ -186,9 +206,16 @@ export default function Form({ prefill }: Props) {
               name="contact_number"
               placeholder="Contact Number"
               required
+              disabled={!isSuperAdmin}
             />
-            <SelectQualification name="qualification_id" />
-            <SelectPositionLevel name="position_level_id" />
+            <SelectQualification
+              name="qualification_id"
+              disabled={!isSuperAdmin}
+            />
+            <SelectPositionLevel
+              name="position_level_id"
+              disabled={!isSuperAdmin}
+            />
             <Select
               placeHolder={'Select Role'}
               label={'Role'}
@@ -223,6 +250,7 @@ export default function Form({ prefill }: Props) {
                   value: 'HRD',
                 },
               ]}
+              disabled={!isSuperAdmin}
             />
             <Select
               placeHolder={'Leave Category'}
@@ -242,22 +270,26 @@ export default function Form({ prefill }: Props) {
                   value: 'Meninggal Dunia',
                 },
               ]}
+              disabled={!isSuperAdmin}
             />
             <Textarea
               label="Address"
               name="address"
               placeholder="Address"
               required
+              disabled={!isSuperAdmin}
             />
           </div>
-          <Button
-            type="submit"
-            className="mt-8 w-full lg:w-1/2"
-            isProcessing={isSubmitting}
-            disabled={isSubmitting}
-          >
-            {prefill ? 'Edit' : 'Save'}
-          </Button>
+          {isSuperAdmin && (
+            <Button
+              type="submit"
+              className="mt-8 w-full lg:w-1/2"
+              isProcessing={isSubmitting}
+              disabled={isSubmitting}
+            >
+              {prefill ? 'Edit' : 'Save'}
+            </Button>
+          )}
         </form>
       </FormProvider>
     </LayoutPage>

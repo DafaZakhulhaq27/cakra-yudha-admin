@@ -56,6 +56,7 @@ export default function SelectLocation(props: Props) {
           setValue(`${props.name}_name` ?? '', v?.location_name)
         }}
         defaultOptions
+        isDisabled={props.disabled}
       />
       {errorMessage && (
         <p className="mt-2 text-sm text-red-600 dark:text-red-500 font-medium">

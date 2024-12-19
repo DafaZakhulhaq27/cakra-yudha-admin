@@ -60,6 +60,7 @@ export default function SelectProject({ type, ...props }: Props) {
           setValue(`${props.name}_name` ?? '', v?.project_code)
         }}
         defaultOptions
+        isDisabled={props.disabled}
       />
       {errorMessage && (
         <p className="mt-2 text-sm text-red-600 dark:text-red-500 font-medium">
